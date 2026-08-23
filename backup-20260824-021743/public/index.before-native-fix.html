@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1,
+maximum-scale=1,user-scalable=no,
+viewport-fit=cover">
+
+<title>CodeGrid</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#000;
+}
+
+body{
+  font-family:
+    "JetBrains Mono",
+    "Cascadia Mono",
+    "Roboto Mono",
+    "DejaVu Sans Mono",
+    monospace;
+}
+
+#app{
+  width:100%;
+  height:100dvh;
+  display:flex;
+  flex-direction:column;
+  background:#000;
+}
+
+#topbar{
+  height:42px;
+  min-height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 12px;
+  background:#050505;
+  border-bottom:1px solid #181818;
+  color:#fff;
+  user-select:none;
+}
+
+#logo{
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:.3px;
+}
+
+#status{
+  font-size:11px;
+  color:#777;
+}
+
+/*
+ * NATIVE TEXT TERMINAL
+ */
+
+#terminal{
+  flex:1;
+  min-height:0;
+  width:100%;
+  position:relative;
+  background:#000;
+}
+
+/*
+ * Textarea được dùng để Android xử lý:
+ *
+ * - long press
+ * - selection handles
+ * - copy
+ * - paste
+ * - select all
+ * - keyboard
+ */
+
+#shellText{
+  position:absolute;
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  margin:0;
+  padding:10px;
+
+  border:0;
+  outline:0;
+  resize:none;
+
+  overflow:auto;
+
+  background:#000;
+  color:#e6e6e6;
+
+  font-family:
+    "JetBrains Mono",
+    "Cascadia Mono",
+    "Roboto Mono",
+    "DejaVu Sans Mono",
+    monospace;
+
+  font-size:14px;
+  line-height:1.45;
+
+  white-space:pre;
+  word-wrap:normal;
+
+  caret-color:#fff;
+
+  /*
+   * Cho Android native selection.
+   */
+  user-select:text;
+  -webkit-user-select:text;
+
+  /*
+   * Không chặn thao tác native.
+   */
+  touch-action:auto;
+
+  -webkit-appearance:none;
+  appearance:none;
+}
+
+#shellText::selection{
+  background:#315f9f;
+  color:#fff;
+}
+
+#shellText::-webkit-scrollbar{
+  width:5px;
+}
+
+#shellText::-webkit-scrollbar-track{
+  background:#000;
+}
+
+#shellText::-webkit-scrollbar-thumb{
+  background:#333;
+}
+
+@media(max-width:600px){
+
+  #shellText{
+    font-size:14px;
+    padding:8px 7px;
+    line-height:1.45;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="app">
+
+  <header id="topbar">
+    <div id="logo">CodeGrid</div>
+    <div id="status">CONNECTING</div>
+  </header>
+
+  <main id="terminal">
+    <textarea
+      id="shellText"
+      spellcheck="false"
+      autocorrect="off"
+      autocapitalize="off"
+      autocomplete="off"
+      inputmode="text"
+      wrap="off"
+      aria-label="CodeGrid shell"
+    ></textarea>
+  </main>
+
+</div>
+
+<script>
+
+const shellText =
+  document.getElementById("shellText");
+
+const status =
+  document.getElementById("status");
+
+let socket = null;
+
+
+/*
+ * SHELL OUTPUT
+ *
+ * Server gửi output từ node-pty.
+ */
+
+function writeOutput(data){
+
+  shellText.value += data;
+
+  /*
+   * Đưa cursor về cuối.
+   */
+  shellText.selectionStart =
+    shellText.value.length;
+
+  shellText.selectionEnd =
+    shellText.value.length;
+
+  shellText.scrollTop =
+    shellText.scrollHeight;
+}
+
+
+/*
+ * SOCKET
+ */
+
+function connect(){
+
+  const protocol =
+    location.protocol === "https:"
+      ? "wss:"
+      : "ws:";
+
+  socket = new WebSocket(
+    protocol + "//" + location.host
+  );
+
+  socket.onopen = () => {
+
+    status.textContent = "● ONLINE";
+    status.style.color = "#7ee787";
+
+    shellText.focus();
+
+  };
+
+
+  socket.onmessage = event => {
+
+    if(typeof event.data === "string"){
+
+      writeOutput(event.data);
+
+    }else{
+
+      const decoder =
+        new TextDecoder();
+
+      writeOutput(
+        decoder.decode(
+          new Uint8Array(event.data)
+        )
+      );
+    }
+  };
+
+
+  socket.onerror = () => {
+
+    status.textContent = "ERROR";
+    status.style.color = "#ff7b72";
+  };
+
+
+  socket.onclose = () => {
+
+    status.textContent = "OFFLINE";
+    status.style.color = "#ff7b72";
+
+    setTimeout(connect,1500);
+  };
+}
+
+
+/*
+ * INPUT
+ *
+ * Không lower-case.
+ * Không upper-case.
+ * Không sửa ký tự.
+ *
+ * Mỗi ký tự được gửi nguyên bản
+ * xuống node-pty.
+ */
+
+shellText.addEventListener(
+  "input",
+  event => {
+
+    if(
+      !socket ||
+      socket.readyState !== WebSocket.OPEN
+    ){
+      return;
+    }
+
+    /*
+     * Lấy phần text mới được nhập.
+     *
+     * Vì shellText chứa cả output,
+     * ta gửi phần thay đổi cuối cùng.
+     */
+
+    const value = shellText.value;
+
+    const cursor =
+      shellText.selectionStart;
+
+    /*
+     * Không cho sửa/xóa output cũ.
+     *
+     * Shell input luôn nằm cuối.
+     */
+
+    if(cursor < value.length){
+
+      shellText.selectionStart =
+        value.length;
+
+      shellText.selectionEnd =
+        value.length;
+
+      return;
+    }
+
+    /*
+     * Lấy ký tự vừa nhập.
+     */
+
+    const previous =
+      shellText.dataset.sentLength
+        ? Number(shellText.dataset.sentLength)
+        : value.length;
+
+    shellText.dataset.sentLength =
+      value.length;
+
+    /*
+     * Trường hợp bình thường:
+     * gửi phần mới.
+     */
+
+    if(value.length >= previous){
+
+      const added =
+        value.slice(previous);
+
+      if(added){
+
+        socket.send(
+          JSON.stringify({
+            type:"input",
+            data:added
+          })
+        );
+      }
+
+    }
+  }
+);
+
+
+/*
+ * QUAN TRỌNG:
+ *
+ * Khi shell trả output,
+ * cập nhật vị trí input.
+ */
+
+const originalWriteOutput = writeOutput;
+
+
+/*
+ * Khởi động.
+ */
+
+connect();
+
+
+/*
+ * Focus khi chạm màn hình.
+ *
+ * Không long-press handler.
+ * Android tự xử lý selection.
+ */
+
+shellText.addEventListener(
+  "pointerdown",
+  () => {
+    shellText.focus();
+  },
+  {passive:true}
+);
+
+</script>
+
+</body>
+</html>

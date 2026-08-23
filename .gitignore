@@ -1,0 +1,17 @@
+node_modules/
+.npm/
+*.log
+.env
+.env.*
+!.env.example
+.cache/
+dist/
+build/
+coverage/
+.tmp/
+temp/
+.DS_Store
+
+.codegrid/github.env
+.codegrid/
+*.pid

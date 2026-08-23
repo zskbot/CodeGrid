@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>CodeGrid</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@5.3.0/css/xterm.css">
+
+<style>
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#000;
+}
+
+body{
+  font-family:
+    "JetBrains Mono",
+    "Cascadia Mono",
+    "Roboto Mono",
+    "DejaVu Sans Mono",
+    monospace;
+  color:#fff;
+}
+
+#app{
+  width:100%;
+  height:100dvh;
+  display:flex;
+  flex-direction:column;
+  background:#000;
+}
+
+#topbar{
+  height:42px;
+  min-height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 12px;
+  background:#050505;
+  border-bottom:1px solid #181818;
+  user-select:none;
+}
+
+#logo{
+  font-family:
+    "JetBrains Mono",
+    "Cascadia Mono",
+    "Roboto Mono",
+    monospace;
+  font-size:14px;
+  font-weight:700;
+}
+
+#status{
+  font-family:
+    "JetBrains Mono",
+    "Roboto Mono",
+    monospace;
+  font-size:11px;
+  color:#777;
+}
+
+#terminal{
+  flex:1;
+  min-height:0;
+  width:100%;
+  padding:5px;
+  background:#000;
+  overflow:hidden;
+}
+
+.xterm{
+  height:100%;
+  font-family:
+    "JetBrains Mono",
+    "Cascadia Mono",
+    "Roboto Mono",
+    "DejaVu Sans Mono",
+    monospace !important;
+}
+
+.xterm-viewport{
+  background:#000 !important;
+}
+
+.xterm-screen{
+  touch-action:auto !important;
+}
+
+.xterm-helper-textarea{
+  opacity:0 !important;
+  position:absolute !important;
+}
+
+@media(max-width:600px){
+  #terminal{
+    padding:4px;
+  }
+
+  .xterm{
+    font-size:14px !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="app">
+
+  <header id="topbar">
+    <div id="logo">CodeGrid</div>
+    <div id="status">CONNECTING</div>
+  </header>
+
+  <main id="terminal"></main>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xterm-addon-fit@0.8.0/lib/xterm-addon-fit.js"></script>
+
+<script>
+const terminalElement = document.getElementById("terminal");
+const statusElement = document.getElementById("status");
+
+const term = new Terminal({
+  cursorBlink: true,
+  cursorStyle: "block",
+  convertEol: false,
+  scrollback: 10000,
+  fontSize: 14,
+
+  fontFamily:
+    '"JetBrains Mono",' +
+    '"Cascadia Mono",' +
+    '"Roboto Mono",' +
+    '"DejaVu Sans Mono",' +
+    'monospace',
+
+  allowTransparency: false,
+
+  theme:{
+    background:"#000000",
+    foreground:"#E6E6E6",
+    cursor:"#FFFFFF",
+    cursorAccent:"#000000",
+    selectionBackground:"#444444",
+    black:"#000000",
+    brightBlack:"#666666",
+    white:"#E6E6E6",
+    brightWhite:"#FFFFFF"
+  }
+});
+
+const fitAddon = new FitAddon.FitAddon();
+
+term.loadAddon(fitAddon);
+term.open(terminalElement);
+
+let socket = null;
+
+function fitTerminal(){
+  try{
+    fitAddon.fit();
+
+    if(
+      socket &&
+      socket.readyState === WebSocket.OPEN
+    ){
+      socket.send(JSON.stringify({
+        type:"resize",
+        cols:term.cols,
+        rows:term.rows
+      }));
+    }
+  }catch(e){}
+}
+
+function setStatus(text,color){
+  statusElement.textContent = text;
+  statusElement.style.color = color;
+}
+
+function connect(){
+
+  const protocol =
+    location.protocol === "https:"
+      ? "wss:"
+      : "ws:";
+
+  socket = new WebSocket(
+    protocol + "//" + location.host
+  );
+
+  socket.onopen = () => {
+
+    setStatus("● ONLINE","#7ee787");
+
+    setTimeout(() => {
+      fitTerminal();
+      term.focus();
+    },100);
+  };
+
+  socket.onmessage = event => {
+
+    if(typeof event.data === "string"){
+      term.write(event.data);
+    }else{
+      term.write(new Uint8Array(event.data));
+    }
+  };
+
+  socket.onerror = () => {
+    setStatus("ERROR","#ff7b72");
+  };
+
+  socket.onclose = () => {
+
+    setStatus("OFFLINE","#ff7b72");
+
+    setTimeout(connect,1500);
+  };
+}
+
+
+/*
+ * QUAN TRỌNG:
+ *
+ * Không lower-case.
+ * Không upper-case.
+ * Không sửa ký tự.
+ * Không tự xử lý bàn phím.
+ *
+ * Xterm nhận input nguyên bản.
+ */
+
+term.onData(data => {
+
+  if(
+    socket &&
+    socket.readyState === WebSocket.OPEN
+  ){
+
+    socket.send(JSON.stringify({
+      type:"input",
+      data:data
+    }));
+  }
+});
+
+
+/*
+ * CHẠM TERMINAL
+ *
+ * Chỉ focus xterm.
+ * Không chặn touch.
+ * Không can thiệp selection.
+ */
+
+terminalElement.addEventListener(
+  "pointerdown",
+  () => {
+    term.focus();
+  },
+  {passive:true}
+);
+
+
+/*
+ * COPY
+ *
+ * Nếu xterm đang có vùng chọn,
+ * dùng clipboard của trình duyệt.
+ */
+
+async function copySelection(){
+
+  const selection = term.getSelection();
+
+  if(!selection){
+    return false;
+  }
+
+  try{
+
+    await navigator.clipboard.writeText(selection);
+
+    term.clearSelection();
+
+    return true;
+
+  }catch(e){
+
+    try{
+
+      const textarea =
+        document.createElement("textarea");
+
+      textarea.value = selection;
+
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+
+      document.body.appendChild(textarea);
+
+      textarea.select();
+
+      document.execCommand("copy");
+
+      textarea.remove();
+
+      term.clearSelection();
+
+      return true;
+
+    }catch(err){
+
+      return false;
+    }
+  }
+}
+
+
+/*
+ * PASTE
+ */
+
+async function pasteClipboard(){
+
+  let text = "";
+
+  try{
+
+    text =
+      await navigator.clipboard.readText();
+
+  }catch(e){
+
+    return;
+  }
+
+  if(!text){
+    return;
+  }
+
+  if(
+    socket &&
+    socket.readyState === WebSocket.OPEN
+  ){
+
+    socket.send(JSON.stringify({
+      type:"input",
+      data:text
+    }));
+
+    term.focus();
+  }
+}
+
+
+
+/*
+ * MOBILE TEXT SELECTION / PASTE
+ *
+ * Không can thiệp vào input bình thường.
+ * Xterm tự xử lý bàn phím và cursor.
+ *
+ * Long press 3 giây:
+ * - Nếu đang có selection: copy selection.
+ * - Nếu không có selection: paste clipboard.
+ *
+ * Selection của xterm vẫn được giữ nguyên để người dùng
+ * kéo chọn ít/nhiều tùy ý.
+ */
+
+let pressTimer = null;
+let pressX = 0;
+let pressY = 0;
+let moved = false;
+
+function cancelPress(){
+  if(pressTimer){
+    clearTimeout(pressTimer);
+    pressTimer = null;
+  }
+}
+
+terminalElement.addEventListener(
+  "touchstart",
+  event => {
+
+    if(!event.touches || !event.touches[0]){
+      return;
+    }
+
+    const t = event.touches[0];
+
+    pressX = t.clientX;
+    pressY = t.clientY;
+    moved = false;
+
+    cancelPress();
+
+    pressTimer = setTimeout(async () => {
+
+      pressTimer = null;
+
+      /*
+       * Nếu xterm đang có vùng chọn,
+       * copy chính vùng đó.
+       */
+      if(term.hasSelection()){
+
+        await copySelection();
+
+        return;
+      }
+
+      /*
+       * Không có selection:
+       * paste clipboard tại cursor hiện tại.
+       */
+      await pasteClipboard();
+
+    },3000);
+
+  },
+  {passive:true}
+);
+
+terminalElement.addEventListener(
+  "touchmove",
+  event => {
+
+    if(!pressTimer){
+      return;
+    }
+
+    if(!event.touches || !event.touches[0]){
+      cancelPress();
+      return;
+    }
+
+    const t = event.touches[0];
+
+    const dx = Math.abs(t.clientX - pressX);
+    const dy = Math.abs(t.clientY - pressY);
+
+    /*
+     * Di chuyển tay = đang chọn/kéo.
+     * Không được kích hoạt long press.
+     */
+    if(dx > 10 || dy > 10){
+
+      moved = true;
+
+      cancelPress();
+    }
+
+  },
+  {passive:true}
+);
+
+terminalElement.addEventListener(
+  "touchend",
+  () => {
+    cancelPress();
+  },
+  {passive:true}
+);
+
+terminalElement.addEventListener(
+  "touchcancel",
+  () => {
+    cancelPress();
+  },
+  {passive:true}
+);
+
+
+/*
+ * Không bắt pointerdown để gửi input.
+ *
+ * Chỉ focus khi chạm.
+ * Xterm tự xử lý keyboard.
+ */
+
+
+
+/*
+ * Clipboard
+ */
+
+async function copySelection(){
+
+  const text = term.getSelection();
+
+  if(!text){
+    return false;
+  }
+
+  try{
+
+    await navigator.clipboard.writeText(text);
+
+    term.clearSelection();
+
+    return true;
+
+  }catch(e){
+
+    try{
+
+      const textarea =
+        document.createElement("textarea");
+
+      textarea.value = text;
+
+      textarea.style.position = "fixed";
+      textarea.style.left = "-9999px";
+
+      document.body.appendChild(textarea);
+
+      textarea.focus();
+      textarea.select();
+
+      document.execCommand("copy");
+
+      textarea.remove();
+
+      term.clearSelection();
+
+      return true;
+
+    }catch(err){
+
+      return false;
+    }
+  }
+}
+
+
+async function pasteClipboard(){
+
+  let text = "";
+
+  try{
+
+    text = await navigator.clipboard.readText();
+
+  }catch(e){
+
+    return;
+  }
+
+  if(!text){
+    return;
+  }
+
+  if(
+    socket &&
+    socket.readyState === WebSocket.OPEN
+  ){
+
+    socket.send(JSON.stringify({
+      type:"input",
+      data:text
+    }));
+
+    term.focus();
+  }
+}
+
+
+/*
+ * Ctrl+Shift+C / Ctrl+Shift+V
+ */
+
+term.attachCustomKeyEventHandler(event => {
+
+  if(
+    event.ctrlKey &&
+    event.shiftKey &&
+    event.key.toLowerCase() === "c"
+  ){
+
+    copySelection();
+
+    return false;
+  }
+
+  if(
+    event.ctrlKey &&
+    event.shiftKey &&
+    event.key.toLowerCase() === "v"
+  ){
+
+    pasteClipboard();
+
+    return false;
+  }
+
+  return true;
+});
+
+
+/*
+ * RESIZE
+ */
+
+window.addEventListener(
+  "resize",
+  () => {
+    setTimeout(fitTerminal,100);
+  }
+);
+
+window.addEventListener(
+  "orientationchange",
+  () => {
+    setTimeout(fitTerminal,300);
+  }
+);
+
+if(window.visualViewport){
+
+  window.visualViewport.addEventListener(
+    "resize",
+    () => {
+      setTimeout(fitTerminal,100);
+    }
+  );
+}
+
+
+/*
+ * START
+ */
+
+connect();
+
+setTimeout(() => {
+  fitTerminal();
+  term.focus();
+},500);
+
+</script>
+
+</body>
+</html>

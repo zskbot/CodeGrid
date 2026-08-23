@@ -1,0 +1,1715 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1,
+maximum-scale=1,user-scalable=no,
+viewport-fit=cover">
+
+<title>CodeGrid</title>
+
+<style>
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,
+body{
+  width:100%;
+  height:100%;
+  margin:0;
+  overflow:hidden;
+  background:#000;
+}
+
+body{
+  color:#e6e6e6;
+  font-family:
+    "JetBrains Mono",
+    "Cascadia Mono",
+    "Roboto Mono",
+    "DejaVu Sans Mono",
+    monospace;
+}
+
+button,
+textarea,
+input{
+  font:inherit;
+}
+
+button{
+  -webkit-user-select:none;
+  user-select:none;
+}
+
+#app{
+  width:100%;
+  height:100dvh;
+  min-height:100dvh;
+  display:flex;
+  flex-direction:column;
+  background:#000;
+}
+
+
+/* ================================
+   TOP BAR
+================================ */
+
+#topbar{
+  position:relative;
+  z-index:20;
+
+  width:100%;
+  height:44px;
+  min-height:44px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:#050505;
+  border-bottom:1px solid #191919;
+}
+
+#menuButton{
+  position:absolute;
+
+  left:7px;
+  top:6px;
+
+  width:32px;
+  height:32px;
+
+  padding:0;
+
+  border:0;
+  outline:0;
+
+  background:transparent;
+  color:#fff;
+
+  font-size:21px;
+  line-height:32px;
+
+  text-align:center;
+}
+
+#menuButton:active{
+  background:#161616;
+}
+
+#title{
+  color:#fff;
+
+  font-size:14px;
+  font-weight:700;
+
+  letter-spacing:.2px;
+}
+
+#connection{
+  position:absolute;
+
+  right:10px;
+
+  color:#555;
+
+  font-size:10px;
+}
+
+
+/* ================================
+   MAIN
+================================ */
+
+#main{
+  position:relative;
+
+  flex:1;
+  min-height:0;
+
+  width:100%;
+}
+
+
+/* ================================
+   PANELS
+================================ */
+
+.panel{
+  position:absolute;
+
+  inset:0;
+
+  display:none;
+
+  background:#000;
+}
+
+.panel.active{
+  display:flex;
+}
+
+
+/* ================================
+   TERMINAL
+================================ */
+
+#terminalPanel{
+  flex-direction:column;
+}
+
+#shellText{
+  position:absolute;
+
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  margin:0;
+
+  padding:
+    9px
+    8px
+    20px
+    8px;
+
+  border:0;
+  outline:0;
+  resize:none;
+
+  overflow:auto;
+
+  background:#000;
+  color:#e6e6e6;
+
+  font-family:
+    "JetBrains Mono",
+    "Cascadia Mono",
+    "Roboto Mono",
+    "DejaVu Sans Mono",
+    monospace;
+
+  font-size:14px;
+  line-height:1.45;
+
+  white-space:pre;
+
+  word-wrap:normal;
+
+  caret-color:#fff;
+
+  /*
+   * Android native selection.
+   */
+  user-select:text;
+  -webkit-user-select:text;
+
+  touch-action:auto;
+
+  -webkit-appearance:none;
+  appearance:none;
+
+  scrollbar-width:thin;
+}
+
+#shellText::selection{
+  background:#315f9f;
+  color:#fff;
+}
+
+#shellText::-webkit-scrollbar{
+  width:5px;
+}
+
+#shellText::-webkit-scrollbar-track{
+  background:#000;
+}
+
+#shellText::-webkit-scrollbar-thumb{
+  background:#333;
+}
+
+
+/* ================================
+   FILES
+================================ */
+
+#filesPanel{
+  flex-direction:column;
+}
+
+.panelHeader{
+  height:42px;
+  min-height:42px;
+
+  display:flex;
+  align-items:center;
+
+  padding:0 10px;
+
+  border-bottom:1px solid #191919;
+
+  color:#aaa;
+
+  font-size:12px;
+}
+
+#fileTree{
+  flex:1;
+
+  overflow:auto;
+
+  padding:7px;
+}
+
+.file{
+  width:100%;
+
+  min-height:38px;
+
+  display:block;
+
+  padding:
+    8px
+    9px;
+
+  border:0;
+  border-bottom:1px solid #0e0e0e;
+
+  background:#000;
+
+  color:#bbb;
+
+  text-align:left;
+
+  font-size:12px;
+}
+
+.file:active{
+  background:#151515;
+  color:#fff;
+}
+
+
+/* ================================
+   EDITOR
+================================ */
+
+#editorPanel{
+  flex-direction:column;
+}
+
+#editorToolbar{
+  height:42px;
+  min-height:42px;
+
+  display:flex;
+  align-items:center;
+
+  gap:6px;
+
+  padding:5px;
+
+  border-bottom:1px solid #191919;
+}
+
+#filePath{
+  flex:1;
+
+  min-width:0;
+
+  height:32px;
+
+  padding:0 8px;
+
+  border:1px solid #222;
+  outline:0;
+
+  background:#050505;
+  color:#aaa;
+
+  font-size:11px;
+}
+
+#saveButton{
+  height:32px;
+
+  padding:0 11px;
+
+  border:1px solid #333;
+  background:#111;
+  color:#fff;
+
+  font-size:11px;
+}
+
+#saveButton:active{
+  background:#222;
+}
+
+#editor{
+  flex:1;
+
+  width:100%;
+
+  min-height:0;
+
+  padding:10px;
+
+  border:0;
+  outline:0;
+  resize:none;
+
+  background:#000;
+  color:#ddd;
+
+  font-family:
+    "JetBrains Mono",
+    "Cascadia Mono",
+    "Roboto Mono",
+    monospace;
+
+  font-size:13px;
+  line-height:1.5;
+
+  white-space:pre;
+
+  overflow:auto;
+
+  user-select:text;
+  -webkit-user-select:text;
+}
+
+
+/* ================================
+   PREVIEW
+================================ */
+
+#previewPanel{
+  flex-direction:column;
+}
+
+#previewFrame{
+  width:100%;
+  height:100%;
+
+  border:0;
+
+  background:#fff;
+}
+
+
+/* ================================
+   SIDE MENU
+================================ */
+
+#menuBackdrop{
+  position:fixed;
+
+  z-index:90;
+
+  inset:44px 0 0 0;
+
+  display:none;
+
+  background:rgba(0,0,0,.62);
+}
+
+#menuBackdrop.open{
+  display:block;
+}
+
+#sideMenu{
+  position:fixed;
+
+  z-index:100;
+
+  top:44px;
+  left:0;
+  bottom:0;
+
+  width:275px;
+  max-width:86vw;
+
+  display:flex;
+  flex-direction:column;
+
+  padding:8px;
+
+  background:#050505;
+
+  border-right:1px solid #222;
+
+  transform:translateX(-100%);
+
+  transition:
+    transform .16s ease;
+}
+
+#sideMenu.open{
+  transform:translateX(0);
+}
+
+#menuBrand{
+  padding:
+    10px
+    9px
+    14px;
+
+  border-bottom:1px solid #181818;
+
+  color:#fff;
+
+  font-size:15px;
+  font-weight:700;
+}
+
+.menuItem{
+  width:100%;
+
+  min-height:48px;
+
+  margin-top:4px;
+
+  padding:
+    7px
+    10px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:flex-start;
+
+  border:0;
+  border-left:2px solid transparent;
+
+  background:#050505;
+
+  color:#ccc;
+
+  text-align:left;
+}
+
+.menuItem span{
+  font-size:13px;
+}
+
+.menuItem small{
+  margin-top:2px;
+
+  color:#555;
+
+  font-size:10px;
+}
+
+.menuItem.active{
+  background:#111;
+
+  border-left-color:#fff;
+
+  color:#fff;
+}
+
+.menuItem.active small{
+  color:#888;
+}
+
+.menuItem:active{
+  background:#181818;
+}
+
+.menuSeparator{
+  height:1px;
+
+  margin:
+    9px
+    2px;
+
+  background:#1b1b1b;
+}
+
+#menuBottom{
+  margin-top:auto;
+
+  padding:
+    11px
+    9px;
+
+  border-top:1px solid #181818;
+
+  color:#555;
+
+  font-size:9px;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media(max-width:600px){
+
+  #shellText{
+    font-size:14px;
+
+    padding:
+      8px
+      7px
+      20px
+      7px;
+  }
+
+  #sideMenu{
+    width:270px;
+  }
+
+}
+
+
+/* ================================
+   DESKTOP
+================================ */
+
+@media(min-width:900px){
+
+  #sideMenu{
+    width:300px;
+  }
+
+  #shellText{
+    font-size:14px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="app">
+
+  <header id="topbar">
+
+    <button
+      id="menuButton"
+      aria-label="Open navigation">
+      ☰
+    </button>
+
+    <div id="title">
+      Shell CodeGrid
+    </div>
+
+    <div id="connection">
+      ●
+    </div>
+
+  </header>
+
+
+  <main id="main">
+
+
+    <!-- ==========================
+         TERMINAL
+    =========================== -->
+
+    <section
+      id="terminalPanel"
+      class="panel active">
+
+      <textarea
+        id="shellText"
+        spellcheck="false"
+        autocorrect="off"
+        autocapitalize="off"
+        autocomplete="off"
+        wrap="off"
+        inputmode="text"
+        aria-label="CodeGrid Shell"></textarea>
+
+    </section>
+
+
+    <!-- ==========================
+         FILES
+    =========================== -->
+
+    <section
+      id="filesPanel"
+      class="panel">
+
+      <div class="panelHeader">
+        ~/CodeGrid
+      </div>
+
+      <div id="fileTree"></div>
+
+    </section>
+
+
+    <!-- ==========================
+         EDITOR
+    =========================== -->
+
+    <section
+      id="editorPanel"
+      class="panel">
+
+      <div id="editorToolbar">
+
+        <input
+          id="filePath"
+          value=""
+          placeholder="File path">
+
+        <button id="saveButton">
+          SAVE
+        </button>
+
+      </div>
+
+      <textarea
+        id="editor"
+        spellcheck="false"
+        autocorrect="off"
+        autocapitalize="off"
+        autocomplete="off"></textarea>
+
+    </section>
+
+
+    <!-- ==========================
+         PREVIEW
+    =========================== -->
+
+    <section
+      id="previewPanel"
+      class="panel">
+
+      <iframe
+        id="previewFrame"
+        src="/preview/">
+      </iframe>
+
+    </section>
+
+  </main>
+
+
+  <!-- ============================
+       MENU
+  ============================= -->
+
+  <div id="menuBackdrop"></div>
+
+  <aside id="sideMenu">
+
+    <div id="menuBrand">
+      CodeGrid
+    </div>
+
+
+    <button
+      class="menuItem active"
+      data-panel="terminalPanel">
+
+      <span>Terminal</span>
+      <small>Shell</small>
+
+    </button>
+
+
+    <button
+      class="menuItem"
+      data-panel="filesPanel">
+
+      <span>Files</span>
+      <small>Workspace</small>
+
+    </button>
+
+
+    <button
+      class="menuItem"
+      data-panel="editorPanel">
+
+      <span>Editor</span>
+      <small>Code</small>
+
+    </button>
+
+
+    <button
+      class="menuItem"
+      data-panel="previewPanel">
+
+      <span>Preview</span>
+      <small>Web App</small>
+
+    </button>
+
+
+    <div class="menuSeparator"></div>
+
+
+    <button
+      class="menuItem"
+      data-action="github">
+
+      <span>GitHub</span>
+      <small>Clone · Pull · Commit · Push</small>
+
+    </button>
+
+
+    <button
+      class="menuItem"
+      data-action="workspace">
+
+      <span>Workspace</span>
+      <small>~/CodeGrid</small>
+
+    </button>
+
+
+    <div id="menuBottom">
+      CodeGrid Web IDE · Android / Termux
+    </div>
+
+  </aside>
+
+</div>
+
+
+<script>
+
+/* ==================================
+   ELEMENTS
+================================== */
+
+const shellText =
+  document.getElementById(
+    "shellText"
+  );
+
+const connection =
+  document.getElementById(
+    "connection"
+  );
+
+const menuButton =
+  document.getElementById(
+    "menuButton"
+  );
+
+const sideMenu =
+  document.getElementById(
+    "sideMenu"
+  );
+
+const menuBackdrop =
+  document.getElementById(
+    "menuBackdrop"
+  );
+
+
+let socket = null;
+
+
+/* ==================================
+   ANSI CLEANER
+================================== */
+
+function cleanTerminalOutput(data){
+
+  let text =
+    String(data ?? "");
+
+  /*
+   * ANSI CSI sequences.
+   */
+
+  text =
+    text.replace(
+      /\x1B\[[0-?]*[ -/]*[@-~]/g,
+      ""
+    );
+
+  /*
+   * OSC sequences.
+   */
+
+  text =
+    text.replace(
+      /\x1B\][^\x07]*(?:\x07|\x1B\\)/g,
+      ""
+    );
+
+  /*
+   * Remaining ESC.
+   */
+
+  text =
+    text.replace(
+      /\x1B/g,
+      ""
+    );
+
+  /*
+   * Hide the noisy initialization
+   * message from the web display.
+   */
+
+  text =
+    text.replace(
+      /bash:\s*initialize_job_control:[^\r\n]*\r?\n?/g,
+      ""
+    );
+
+  /*
+   * Hide the old workspace prompt
+   * if Bash emits it.
+   */
+
+  text =
+    text.replace(
+      /\/data\/data\/com\.termux\/files\/home\/CodeGrid\/workspace/g,
+      "~/CodeGrid"
+    );
+
+  /*
+   * Keep the visual prompt compact.
+   */
+
+  text =
+    text.replace(
+      /~\/CodeGrid\/workspace/g,
+      "~/CodeGrid"
+    );
+
+  return text;
+}
+
+
+/* ==================================
+   OUTPUT
+================================== */
+
+function writeOutput(data){
+
+  const clean =
+    cleanTerminalOutput(data);
+
+  if(!clean){
+    return;
+  }
+
+  shellText.value += clean;
+
+  shellText.selectionStart =
+    shellText.value.length;
+
+  shellText.selectionEnd =
+    shellText.value.length;
+
+  shellText.scrollTop =
+    shellText.scrollHeight;
+
+  /*
+   * The textarea is a visual terminal
+   * buffer, not a normal text input.
+   */
+
+  shellText.dataset.outputLength =
+    shellText.value.length;
+}
+
+
+/* ==================================
+   SOCKET
+================================== */
+
+function connectShell(){
+
+  const protocol =
+    location.protocol === "https:"
+      ? "wss:"
+      : "ws:";
+
+  socket =
+    new WebSocket(
+      protocol +
+      "//" +
+      location.host
+    );
+
+
+  socket.binaryType =
+    "arraybuffer";
+
+
+  socket.onopen = () => {
+
+    connection.textContent =
+      "●";
+
+    connection.style.color =
+      "#7ee787";
+
+    shellText.focus();
+
+  };
+
+
+  socket.onmessage = event => {
+
+    if(
+      typeof event.data ===
+      "string"
+    ){
+
+      try {
+
+        const message =
+          JSON.parse(event.data);
+
+        if(
+          message &&
+          message.type ===
+          "output"
+        ){
+
+          writeOutput(
+            message.data
+          );
+
+          return;
+        }
+
+      } catch {}
+
+      writeOutput(
+        event.data
+      );
+
+      return;
+    }
+
+
+    const decoder =
+      new TextDecoder();
+
+    writeOutput(
+      decoder.decode(
+        new Uint8Array(
+          event.data
+        )
+      )
+    );
+
+  };
+
+
+  socket.onerror = () => {
+
+    connection.textContent =
+      "●";
+
+    connection.style.color =
+      "#ff7b72";
+
+  };
+
+
+  socket.onclose = () => {
+
+    connection.textContent =
+      "●";
+
+    connection.style.color =
+      "#ff7b72";
+
+    setTimeout(
+      connectShell,
+      1500
+    );
+
+  };
+
+}
+
+
+/* ==================================
+   TERMINAL INPUT
+================================== */
+
+/*
+ * IMPORTANT:
+ *
+ * Không dùng textarea như một
+ * command input riêng.
+ *
+ * Mỗi phím được gửi trực tiếp
+ * tới Bash.
+ */
+
+let terminalInput = "";
+
+
+/*
+ * Keyboard input.
+ *
+ * Trên Android, input event có thể
+ * gom nhiều ký tự thành một lần.
+ */
+
+shellText.addEventListener(
+  "beforeinput",
+  event => {
+
+    if(
+      !socket ||
+      socket.readyState !==
+      WebSocket.OPEN
+    ){
+      return;
+    }
+
+
+    /*
+     * Không can thiệp khi người dùng
+     * đang chọn text để copy.
+     */
+
+    if(
+      event.inputType ===
+      "insertText"
+    ){
+
+      const data =
+        event.data || "";
+
+      if(data){
+
+        socket.send(
+          JSON.stringify({
+            type:"input",
+            data
+          })
+        );
+
+        /*
+         * Xóa phần input giả do textarea
+         * tự chèn.
+         */
+
+        event.preventDefault();
+
+        shellText.selectionStart =
+          shellText.value.length;
+
+        shellText.selectionEnd =
+          shellText.value.length;
+
+      }
+
+      return;
+    }
+
+
+    if(
+      event.inputType ===
+      "insertLineBreak"
+    ){
+
+      socket.send(
+        JSON.stringify({
+          type:"input",
+          data:"\r"
+        })
+      );
+
+      event.preventDefault();
+
+      return;
+    }
+
+
+    if(
+      event.inputType ===
+      "deleteContentBackward"
+    ){
+
+      socket.send(
+        JSON.stringify({
+          type:"input",
+          data:"\x7f"
+        })
+      );
+
+      event.preventDefault();
+
+      return;
+    }
+
+  },
+  {
+    passive:false
+  }
+);
+
+
+/*
+ * Physical / Android keyboard.
+ */
+
+shellText.addEventListener(
+  "keydown",
+  event => {
+
+    if(
+      !socket ||
+      socket.readyState !==
+      WebSocket.OPEN
+    ){
+      return;
+    }
+
+
+    let data = null;
+
+
+    if(event.key === "Enter"){
+      data = "\r";
+    }
+
+    else if(
+      event.key === "Backspace"
+    ){
+      data = "\x7f";
+    }
+
+    else if(
+      event.key === "Tab"
+    ){
+      data = "\t";
+    }
+
+    else if(
+      event.key === "Escape"
+    ){
+      data = "\x1b";
+    }
+
+    else if(
+      event.key === "ArrowUp"
+    ){
+      data = "\x1b[A";
+    }
+
+    else if(
+      event.key === "ArrowDown"
+    ){
+      data = "\x1b[B";
+    }
+
+    else if(
+      event.key === "ArrowRight"
+    ){
+      data = "\x1b[C";
+    }
+
+    else if(
+      event.key === "ArrowLeft"
+    ){
+      data = "\x1b[D";
+    }
+
+    /*
+     * Ctrl+C
+     */
+
+    else if(
+      event.ctrlKey &&
+      event.key.toLowerCase() === "c"
+    ){
+      data = "\x03";
+    }
+
+    /*
+     * Ctrl+D
+     */
+
+    else if(
+      event.ctrlKey &&
+      event.key.toLowerCase() === "d"
+    ){
+      data = "\x04";
+    }
+
+    /*
+     * Ctrl+L
+     */
+
+    else if(
+      event.ctrlKey &&
+      event.key.toLowerCase() === "l"
+    ){
+      data = "\x0c";
+    }
+
+
+    if(data !== null){
+
+      socket.send(
+        JSON.stringify({
+          type:"input",
+          data
+        })
+      );
+
+      event.preventDefault();
+
+    }
+
+  },
+  {
+    passive:false
+  }
+);
+
+
+/* ==================================
+   FOCUS
+================================== */
+
+shellText.addEventListener(
+  "pointerdown",
+  () => {
+
+    if(
+      socket &&
+      socket.readyState ===
+      WebSocket.OPEN
+    ){
+
+      shellText.focus();
+
+    }
+
+  },
+  {
+    passive:true
+  }
+);
+
+
+/* ==================================
+   MENU
+================================== */
+
+function openMenu(){
+
+  sideMenu.classList.add(
+    "open"
+  );
+
+  menuBackdrop.classList.add(
+    "open"
+  );
+
+}
+
+
+function closeMenu(){
+
+  sideMenu.classList.remove(
+    "open"
+  );
+
+  menuBackdrop.classList.remove(
+    "open"
+  );
+
+}
+
+
+menuButton.onclick = () => {
+
+  if(
+    sideMenu.classList.contains(
+      "open"
+    )
+  ){
+
+    closeMenu();
+
+  }else{
+
+    openMenu();
+
+  }
+
+};
+
+
+menuBackdrop.onclick =
+  closeMenu;
+
+
+/* ==================================
+   PANELS
+================================== */
+
+function showPanel(id){
+
+  document
+    .querySelectorAll(".panel")
+    .forEach(panel => {
+
+      panel.classList.toggle(
+        "active",
+        panel.id === id
+      );
+
+    });
+
+
+  document
+    .querySelectorAll(
+      ".menuItem[data-panel]"
+    )
+    .forEach(item => {
+
+      item.classList.toggle(
+        "active",
+        item.dataset.panel === id
+      );
+
+    });
+
+
+  closeMenu();
+
+
+  if(id === "terminalPanel"){
+
+    setTimeout(
+      () => shellText.focus(),
+      80
+    );
+
+  }
+
+
+  if(id === "filesPanel"){
+
+    loadFiles();
+
+  }
+
+
+  if(id === "previewPanel"){
+
+    document
+      .getElementById(
+        "previewFrame"
+      )
+      .src =
+        "/preview/?t=" +
+        Date.now();
+
+  }
+
+}
+
+
+/* ==================================
+   MENU ACTIONS
+================================== */
+
+document
+  .querySelectorAll(
+    ".menuItem[data-panel]"
+  )
+  .forEach(item => {
+
+    item.onclick = () => {
+
+      showPanel(
+        item.dataset.panel
+      );
+
+    };
+
+  });
+
+
+document
+  .querySelectorAll(
+    ".menuItem[data-action]"
+  )
+  .forEach(item => {
+
+    item.onclick = () => {
+
+      const action =
+        item.dataset.action;
+
+      if(action === "github"){
+
+        alert(
+          "GitHub API đã sẵn sàng:\n\n" +
+          "Clone\n" +
+          "Pull\n" +
+          "Commit\n" +
+          "Push"
+        );
+
+      }
+
+      if(action === "workspace"){
+
+        alert(
+          "Workspace\n\n~/CodeGrid"
+        );
+
+      }
+
+      closeMenu();
+
+    };
+
+  });
+
+
+/* ==================================
+   FILES
+================================== */
+
+const fileTree =
+  document.getElementById(
+    "fileTree"
+  );
+
+const editor =
+  document.getElementById(
+    "editor"
+  );
+
+const filePath =
+  document.getElementById(
+    "filePath"
+  );
+
+
+async function loadFiles(){
+
+  try {
+
+    const response =
+      await fetch(
+        "/api/files"
+      );
+
+    const data =
+      await response.json();
+
+
+    fileTree.innerHTML = "";
+
+
+    function render(
+      items,
+      depth = 0
+    ){
+
+      for(
+        const item of items
+      ){
+
+        const button =
+          document.createElement(
+            "button"
+          );
+
+        button.className =
+          "file";
+
+        button.style.paddingLeft =
+          (9 + depth * 14) +
+          "px";
+
+
+        button.textContent =
+          (
+            item.type ===
+            "directory"
+              ? "▸ "
+              : "• "
+          ) +
+          item.name;
+
+
+        fileTree.appendChild(
+          button
+        );
+
+
+        if(
+          item.type ===
+          "file"
+        ){
+
+          button.onclick =
+            () =>
+              openFile(
+                item.path
+              );
+
+        }
+
+
+        if(
+          item.type ===
+          "directory"
+        ){
+
+          render(
+            item.children || [],
+            depth + 1
+          );
+
+        }
+
+      }
+
+    }
+
+
+    render(
+      data.files || []
+    );
+
+  } catch(error){
+
+    fileTree.textContent =
+      "Unable to load files";
+
+  }
+
+}
+
+
+async function openFile(
+  path
+){
+
+  const response =
+    await fetch(
+      "/api/file?path=" +
+      encodeURIComponent(path)
+    );
+
+
+  const data =
+    await response.json();
+
+
+  if(!data.ok){
+
+    alert(
+      data.error
+    );
+
+    return;
+
+  }
+
+
+  filePath.value =
+    path;
+
+  editor.value =
+    data.content;
+
+
+  showPanel(
+    "editorPanel"
+  );
+
+}
+
+
+document
+  .getElementById(
+    "saveButton"
+  )
+  .onclick =
+  async () => {
+
+    const response =
+      await fetch(
+        "/api/file",
+        {
+          method:"PUT",
+
+          headers:{
+            "Content-Type":
+              "application/json"
+          },
+
+          body:
+            JSON.stringify({
+              path:
+                filePath.value,
+
+              content:
+                editor.value
+            })
+        }
+      );
+
+
+    const data =
+      await response.json();
+
+
+    if(!data.ok){
+
+      alert(
+        data.error
+      );
+
+      return;
+
+    }
+
+
+    loadFiles();
+
+  };
+
+
+/* ==================================
+   START
+================================== */
+
+connectShell();
+
+loadFiles();
+
+</script>
+
+</body>
+</html>
