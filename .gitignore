@@ -1,17 +1,28 @@
+# Dependencies and generated output
 node_modules/
 .npm/
-*.log
-.env
-.env.*
-!.env.example
 .cache/
 dist/
 build/
 coverage/
 .tmp/
 temp/
-.DS_Store
 
-.codegrid/github.env
+# Local environment, credentials, and runtime state
+.env
+.env.*
+!.env.example
 .codegrid/
+.codegrid.pid
+codegrid.log
+*.log
 *.pid
+
+# Local workspace content is user/project data, not CodeGrid source
+workspace/
+
+# Operating system and editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
