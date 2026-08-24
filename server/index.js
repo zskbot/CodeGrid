@@ -888,12 +888,34 @@ app.post(
   }
 );
 
+function gitEnvironment() {
+  const token = getGithubToken();
+
+  if (!token) {
+    return { ...process.env };
+  }
+
+  const credentials = Buffer
+    .from(`x-access-token:${token}`)
+    .toString("base64");
+
+  return {
+    ...process.env,
+    GIT_CONFIG_COUNT: "1",
+    GIT_CONFIG_KEY_0:
+      "http.https://github.com/.extraheader",
+    GIT_CONFIG_VALUE_0:
+      `AUTHORIZATION: basic ${credentials}`
+  };
+}
+
 function git(args, res) {
   execFile(
     "git",
     ["-C", WORKSPACE, ...args],
     {
-      timeout: 120000
+      timeout: 120000,
+      env: gitEnvironment()
     },
     (error, stdout, stderr) => {
       res.json({
@@ -918,10 +940,34 @@ app.post("/api/git/clone", (req, res) => {
     });
   }
 
+  if (!/^(https:\/\/|git@)/.test(url)) {
+    return res.status(400).json({
+      ok: false,
+      error: "Use an HTTPS or SSH repository URL"
+    });
+  }
+
+  const workspaceEntries =
+    fs.readdirSync(WORKSPACE)
+      .filter(name => name !== ".git");
+
+  if (workspaceEntries.length > 0 ||
+      fs.existsSync(path.join(WORKSPACE, ".git"))) {
+    return res.status(409).json({
+      ok: false,
+      error:
+        "Workspace must be empty before cloning a repository"
+    });
+  }
+
   execFile(
     "git",
-    ["clone", url, WORKSPACE],
-    { cwd: ROOT },
+    ["clone", url, "."],
+    {
+      cwd: WORKSPACE,
+      timeout: 120000,
+      env: gitEnvironment()
+    },
     (error, stdout, stderr) => {
       res.json({
         ok: !error,
@@ -948,6 +994,10 @@ app.post("/api/git/commit", (req, res) => {
   execFile(
     "git",
     ["-C", WORKSPACE, "add", "-A"],
+    {
+      timeout: 120000,
+      env: gitEnvironment()
+    },
     (error, stdout, stderr) => {
 
       if (error) {
