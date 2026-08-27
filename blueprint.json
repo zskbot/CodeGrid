@@ -1,0 +1,33 @@
+{
+  "plugins": [
+    "coblocks"
+  ],
+  "steps": [
+    {
+      "step": "installTheme",
+      "themeData": {
+        "resource": "wordpress.org/themes",
+        "slug": "pendant"
+      },
+      "options": {
+        "activate": true
+      },
+      "progress": {
+        "weight": 2
+      }
+    },
+    {
+      "step": "setSiteLanguage",
+      "language": "vi"
+    },
+    {
+      "step": "enableMultisite"
+    }
+  ],
+  "preferredVersions": {
+    "wp": "4.2",
+    "php": "5.2"
+  },
+  "features": {},
+  "login": true
+}
