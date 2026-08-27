@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1020">
+<title>CodeGrid — Workspace</title>
+<link rel="stylesheet" href="docs.css">
+</head>
+<body>
+
+<header class="header">
+<div class="header-in">
+<button class="menu">☰</button>
+<a class="brand" href="index.html">
+<span class="mark">CG</span>
+<span>CodeGrid<small>DOCUMENTATION + WORKSPACE</small></span>
+</a>
+
+<nav class="headnav">
+<a href="index.html">Docs</a>
+<a href="workspace.html">Workspace</a>
+<a href="architecture.html">Architecture</a>
+</nav>
+
+<div class="spacer"></div>
+<input class="search" placeholder="Search docs…">
+<a class="github" href="https://github.com/zskbot/CodeGrid" target="_blank">GitHub ↗</a>
+</div>
+</header>
+
+<div class="layout">
+
+<aside class="sidebar">
+
+<div class="nav-group">
+<div class="label">Documentation</div>
+<a class="nav" href="index.html">Overview</a>
+<a class="nav" href="getting-started.html">Getting Started</a>
+<a class="nav" href="architecture.html">Architecture</a>
+</div>
+
+<div class="nav-group">
+<div class="label">Workspace</div>
+<a class="nav active" href="workspace.html">Workspace</a>
+<a class="nav" href="web-shell.html">Web Shell</a>
+<a class="nav" href="explorer.html">Explorer &amp; Editor</a>
+<a class="nav" href="preview.html">Preview</a>
+</div>
+
+<div class="nav-group">
+<div class="label">Source Control</div>
+<a class="nav" href="git.html">Git</a>
+<a class="nav" href="github.html">GitHub</a>
+</div>
+
+<div class="nav-group">
+<div class="label">Reference</div>
+<a class="nav" href="api.html">API Reference</a>
+<a class="nav" href="configuration.html">Configuration</a>
+<a class="nav" href="safety.html">Safety</a>
+</div>
+
+</aside>
+
+<main>
+
+<div class="crumb">CodeGrid / Workspace</div>
+
+<h1>Documentation that works like a workspace.</h1>
+
+<p class="lead">
+This page is the interactive workspace surface of CodeGrid.
+Every workspace section has its own responsive UI and can be opened directly.
+</p>
+
+<div class="actions">
+<a class="btn primary" href="#home" data-workspace-page="home">Workspace</a>
+<a class="btn" href="#terminal" data-workspace-page="terminal">Terminal</a>
+<a class="btn" href="#explorer" data-workspace-page="explorer">Explorer</a>
+<a class="btn" href="#editor" data-workspace-page="editor">Editor</a>
+<a class="btn" href="#preview" data-workspace-page="preview">Preview</a>
+</div>
+
+<div class="workspace-shell">
+
+<nav class="workspace-nav">
+
+<div class="workspace-nav-title">Workspace</div>
+
+<button class="workspace-tab active" data-page="home">Overview</button>
+<button class="workspace-tab" data-page="terminal">Terminal</button>
+<button class="workspace-tab" data-page="explorer">Explorer</button>
+<button class="workspace-tab" data-page="editor">Editor</button>
+<button class="workspace-tab" data-page="preview">Preview</button>
+<button class="workspace-tab" data-page="git">Git</button>
+<button class="workspace-tab" data-page="github">GitHub</button>
+<button class="workspace-tab" data-page="api">API</button>
+<button class="workspace-tab" data-page="configuration">Configuration</button>
+<button class="workspace-tab" data-page="safety">Safety</button>
+
+</nav>
+
+<section class="workspace-main">
+
+<div class="workspace-page active" id="workspace-home">
+<h2>Workspace Overview</h2>
+<p>
+CodeGrid combines documentation and development workspace navigation.
+Choose a tool from the left. Each tool opens its own workspace surface.
+</p>
+
+<div class="grid">
+<a class="card card-link" href="#terminal" data-workspace-page="terminal">
+<strong>Terminal</strong>
+<p>Open the Web Shell interface.</p>
+</a>
+
+<a class="card card-link" href="#explorer" data-workspace-page="explorer">
+<strong>Explorer</strong>
+<p>Browse the workspace files.</p>
+</a>
+
+<a class="card card-link" href="#editor" data-workspace-page="editor">
+<strong>Editor</strong>
+<p>Edit workspace source directly.</p>
+</a>
+
+<a class="card card-link" href="#preview" data-workspace-page="preview">
+<strong>Preview</strong>
+<p>Open the project preview surface.</p>
+</a>
+</div>
+</div>
+
+<div class="workspace-page" id="workspace-terminal">
+<h2>Web Shell</h2>
+<p>Interactive terminal surface for CodeGrid.</p>
+
+<div class="workspace-terminal" id="workspace-terminal-output">CodeGrid Web Shell
+Ready.
+</div>
+
+<input
+ id="workspace-command"
+ class="workspace-input"
+ autocomplete="off"
+ spellcheck="false"
+ placeholder="Type a command and press Enter…">
+
+<div class="workspace-toolbar">
+<button class="btn primary" data-run-command>Run</button>
+<button class="btn" data-clear-terminal>Clear</button>
+<button class="btn" data-copy-workspace="pwd">Copy pwd</button>
+</div>
+</div>
+
+<div class="workspace-page" id="workspace-explorer">
+<h2>Explorer</h2>
+<p>Workspace file tree.</p>
+
+<div class="card">
+<div class="workspace-file"><span>📁 src/</span><span>directory</span></div>
+<div class="workspace-file"><span>📁 public/</span><span>directory</span></div>
+<div class="workspace-file"><span>📄 package.json</span><span>JSON</span></div>
+<div class="workspace-file"><span>📄 README.md</span><span>Markdown</span></div>
+<div class="workspace-file"><span>📄 index.html</span><span>HTML</span></div>
+</div>
+</div>
+
+<div class="workspace-page" id="workspace-editor">
+<h2>Editor</h2>
+<p>Edit a workspace document.</p>
+
+<textarea id="workspace-editor" class="workspace-editor"><!doctype html>
+<html>
+<body>
+  <h1>Hello CodeGrid</h1>
+</body>
+</html></textarea>
+
+<div class="workspace-toolbar">
+<button class="btn primary" data-save-editor>Save</button>
+</div>
+
+<div class="workspace-status" id="editor-status">
+Ready.
+</div>
+</div>
+
+<div class="workspace-page" id="workspace-preview">
+<h2>Preview</h2>
+<p>Live preview surface.</p>
+
+<iframe
+class="workspace-preview"
+srcdoc="<!doctype html><html><body style='font-family:system-ui;padding:40px'><h1>CodeGrid Preview</h1><p>Your workspace preview appears here.</p></body></html>">
+</iframe>
+</div>
+
+<div class="workspace-page" id="workspace-git">
+<h2>Git</h2>
+<div class="grid">
+<div class="card"><strong>Status</strong><p>Inspect workspace changes.</p></div>
+<div class="card"><strong>Commit</strong><p>Create a source-control commit.</p></div>
+<div class="card"><strong>Pull</strong><p>Synchronize remote changes.</p></div>
+<div class="card"><strong>Push</strong><p>Publish committed changes.</p></div>
+</div>
+<a class="btn primary" href="git.html">Open Git documentation →</a>
+</div>
+
+<div class="workspace-page" id="workspace-github">
+<h2>GitHub</h2>
+<p>Connect the workspace with GitHub.</p>
+<a class="btn primary" href="github.html">Open GitHub documentation →</a>
+</div>
+
+<div class="workspace-page" id="workspace-api">
+<h2>API</h2>
+<p>CodeGrid server API reference.</p>
+<a class="btn primary" href="api.html">Open API reference →</a>
+</div>
+
+<div class="workspace-page" id="workspace-configuration">
+<h2>Configuration</h2>
+<p>Configure the CodeGrid runtime.</p>
+<a class="btn primary" href="configuration.html">Open configuration →</a>
+</div>
+
+<div class="workspace-page" id="workspace-safety">
+<h2>Safety</h2>
+<p>Workspace security and safety rules.</p>
+<a class="btn primary" href="safety.html">Open safety documentation →</a>
+</div>
+
+</section>
+</div>
+
+<footer>
+<strong>CodeGrid</strong> · Documentation + Workspace
+</footer>
+
+</main>
+</div>
+
+<script src="docs.js"></script>
+<script src="workspace.js"></script>
+</body>
+</html>
