@@ -873,3 +873,359 @@ footer{
   max-width:100%;
   overflow:auto;
 }
+
+/* =========================================================
+   CODEGRID MOBILE / RESPONSIVE HARD FIX
+   Prevent vertical character wrapping and squeezed controls
+   ========================================================= */
+
+html,
+body{
+  width:100%;
+  min-width:0;
+  overflow-x:hidden;
+}
+
+*,
+*::before,
+*::after{
+  min-width:0;
+}
+
+.header,
+.header-in{
+  width:100%;
+  min-width:0;
+}
+
+.header-in{
+  flex-wrap:nowrap;
+}
+
+.brand{
+  flex:0 0 auto;
+  width:auto;
+  min-width:max-content;
+  white-space:nowrap;
+}
+
+.brand span,
+.brand small{
+  white-space:nowrap;
+}
+
+.headnav{
+  flex:0 1 auto;
+  min-width:0;
+  white-space:nowrap;
+}
+
+.menu{
+  flex:0 0 36px;
+  width:36px;
+  min-width:36px;
+  white-space:nowrap;
+}
+
+.layout{
+  width:100%;
+  min-width:0;
+}
+
+.sidebar{
+  min-width:0;
+}
+
+.nav-group{
+  width:100%;
+  min-width:0;
+}
+
+.label{
+  width:auto;
+  min-width:max-content;
+  white-space:nowrap;
+}
+
+.nav{
+  width:100%;
+  min-width:0;
+  display:flex;
+  align-items:center;
+  min-height:34px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+main{
+  min-width:0;
+  width:100%;
+}
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  width:100%;
+  min-width:0;
+  gap:10px;
+}
+
+.btn{
+  flex:0 0 auto;
+  width:max-content;
+  min-width:max-content;
+  white-space:nowrap;
+}
+
+.card-link{
+  width:100%;
+  min-width:0;
+  overflow:hidden;
+}
+
+.card-link strong,
+.card-link p,
+.card-action{
+  max-width:100%;
+}
+
+.card-link strong{
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.card-action{
+  display:inline-flex;
+  align-items:center;
+  width:max-content;
+  min-width:max-content;
+  white-space:nowrap;
+}
+
+.grid{
+  width:100%;
+  min-width:0;
+}
+
+.grid > *,
+.workspace-grid > *,
+.workspace-shell > *{
+  min-width:0;
+}
+
+/* Workspace controls */
+.workspace-shell{
+  width:100%;
+  min-width:0;
+}
+
+.workspace-shell button{
+  flex:0 0 auto;
+  min-width:max-content;
+  white-space:nowrap;
+}
+
+.workspace-shell input,
+.workspace-shell textarea{
+  width:100%;
+  min-width:0;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media(max-width:760px){
+
+  .header{
+    height:58px;
+  }
+
+  .header-in{
+    height:58px;
+    padding:0 12px;
+    gap:10px;
+  }
+
+  .menu{
+    display:grid;
+    place-items:center;
+    flex:0 0 38px;
+    width:38px;
+    min-width:38px;
+    height:38px;
+  }
+
+  .brand{
+    flex:1 1 auto;
+    min-width:0;
+    overflow:hidden;
+  }
+
+  .brand > span:last-child{
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  .brand small{
+    display:block;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  .layout{
+    display:block;
+    width:100%;
+    padding-top:58px;
+  }
+
+  .sidebar{
+    width:min(310px,88vw);
+    max-width:88vw;
+  }
+
+  main{
+    width:100%;
+    padding:34px 16px 60px;
+    overflow:hidden;
+  }
+
+  h1{
+    width:100%;
+    max-width:100%;
+    font-size:clamp(34px,10vw,44px);
+    line-height:1.08;
+    overflow-wrap:normal;
+    word-break:normal;
+  }
+
+  h2{
+    width:100%;
+    max-width:100%;
+  }
+
+  .lead{
+    width:100%;
+    max-width:100%;
+  }
+
+  .actions{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .actions .btn{
+    width:100%;
+    min-width:0;
+    justify-content:center;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+    width:100%;
+  }
+
+  .card{
+    width:100%;
+    min-width:0;
+  }
+
+  .card-link strong{
+    white-space:normal;
+    overflow:visible;
+    text-overflow:clip;
+    word-break:normal;
+    overflow-wrap:normal;
+  }
+
+  .pager{
+    grid-template-columns:1fr;
+    width:100%;
+  }
+
+  .pager a{
+    min-width:0;
+  }
+
+  .code{
+    width:100%;
+    max-width:100%;
+  }
+
+  .codebar{
+    min-width:0;
+    gap:8px;
+    white-space:nowrap;
+  }
+
+  .codebar .copy{
+    margin-left:auto;
+    flex:0 0 auto;
+  }
+
+  pre{
+    max-width:100%;
+    overflow-x:auto;
+    white-space:pre;
+  }
+
+  table{
+    min-width:560px;
+  }
+
+  .workspace-shell{
+    display:block;
+    width:100%;
+  }
+
+  .workspace-sidebar,
+  .workspace-main,
+  .workspace-panel{
+    width:100%;
+    min-width:0;
+  }
+
+  .workspace-panel{
+    display:block;
+    border-left:0;
+    border-top:1px solid var(--line);
+  }
+
+  .workspace-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    width:100%;
+  }
+}
+
+/* Very narrow phones */
+@media(max-width:380px){
+
+  .header-in{
+    padding:0 8px;
+    gap:7px;
+  }
+
+  .brand{
+    font-size:13px;
+  }
+
+  main{
+    padding-left:12px;
+    padding-right:12px;
+  }
+
+  .nav{
+    font-size:13px;
+  }
+
+  .btn{
+    min-height:40px;
+  }
+}
