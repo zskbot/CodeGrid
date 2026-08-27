@@ -1513,3 +1513,101 @@ main{
     flex:1 1 100% !important;
   }
 }
+
+/* =========================================================
+   FINAL MOBILE WIDTH FIX
+   Prevent docs pages from collapsing into a narrow column.
+   ========================================================= */
+
+@media (max-width:760px){
+
+  html,
+  body{
+    width:100% !important;
+    min-width:0 !important;
+    max-width:none !important;
+    overflow-x:hidden !important;
+  }
+
+  .layout{
+    display:block !important;
+    width:100% !important;
+    min-width:0 !important;
+    max-width:none !important;
+    margin:0 !important;
+    padding:0 !important;
+  }
+
+  .layout > main,
+  main{
+    display:block !important;
+    width:100% !important;
+    min-width:0 !important;
+    max-width:none !important;
+    margin:0 !important;
+    box-sizing:border-box !important;
+  }
+
+  .layout > main > *,
+  main > *{
+    min-width:0 !important;
+    max-width:100% !important;
+    box-sizing:border-box !important;
+  }
+
+  .crumb,
+  .lead,
+  main h1,
+  main h2,
+  main h3,
+  main p{
+    width:100% !important;
+    min-width:0 !important;
+    max-width:100% !important;
+    box-sizing:border-box !important;
+  }
+
+  main h1{
+    white-space:normal !important;
+    word-break:normal !important;
+    overflow-wrap:normal !important;
+  }
+
+  .hero,
+  .hero-content,
+  .content,
+  .page,
+  .article{
+    width:100% !important;
+    min-width:0 !important;
+    max-width:none !important;
+    box-sizing:border-box !important;
+  }
+
+  .grid{
+    width:100% !important;
+    min-width:0 !important;
+    box-sizing:border-box !important;
+  }
+
+  .card{
+    min-width:0 !important;
+    max-width:100% !important;
+    box-sizing:border-box !important;
+  }
+}
+
+/* Small phones */
+@media (max-width:380px){
+
+  main{
+    width:100% !important;
+    min-width:0 !important;
+    max-width:none !important;
+  }
+
+  main h1{
+    font-size:clamp(42px,12vw,64px) !important;
+    line-height:.95 !important;
+  }
+}
