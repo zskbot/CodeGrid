@@ -1229,3 +1229,287 @@ main{
     min-height:40px;
   }
 }
+
+/* =========================================================
+   CODEGRID WORKSPACE — FINAL LAYOUT OVERRIDE
+   HTML structure:
+   .workspace-shell
+     ├── .workspace-nav
+     └── .workspace-main
+   ========================================================= */
+
+.workspace-shell{
+  display:grid !important;
+  grid-template-columns:minmax(210px,260px) minmax(0,1fr) !important;
+  width:100% !important;
+  max-width:none !important;
+  min-width:0 !important;
+  overflow:hidden !important;
+  box-sizing:border-box !important;
+}
+
+.workspace-nav{
+  display:flex !important;
+  flex-direction:column !important;
+  width:auto !important;
+  min-width:0 !important;
+  max-width:none !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+}
+
+.workspace-nav-title{
+  width:100% !important;
+  min-width:0 !important;
+  white-space:nowrap !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+}
+
+.workspace-tab{
+  display:flex !important;
+  align-items:center !important;
+  width:100% !important;
+  min-width:0 !important;
+  max-width:none !important;
+  flex:0 0 auto !important;
+  box-sizing:border-box !important;
+  white-space:nowrap !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+}
+
+.workspace-main{
+  display:block !important;
+  width:100% !important;
+  min-width:0 !important;
+  max-width:none !important;
+  overflow:hidden !important;
+  box-sizing:border-box !important;
+}
+
+.workspace-page{
+  width:100% !important;
+  min-width:0 !important;
+  max-width:none !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+}
+
+.workspace-page.active{
+  display:block !important;
+}
+
+.workspace-page .grid{
+  width:100% !important;
+  min-width:0 !important;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+}
+
+.workspace-page .card,
+.workspace-card{
+  min-width:0 !important;
+  max-width:100% !important;
+  box-sizing:border-box !important;
+}
+
+.workspace-shell button,
+.workspace-shell a,
+.workspace-shell input,
+.workspace-shell textarea{
+  box-sizing:border-box !important;
+}
+
+.workspace-shell button,
+.workspace-shell .btn{
+  white-space:nowrap !important;
+  word-break:normal !important;
+  overflow-wrap:normal !important;
+}
+
+.workspace-terminal{
+  width:100% !important;
+  min-width:0 !important;
+  max-width:100% !important;
+  overflow:auto !important;
+  white-space:pre-wrap !important;
+  overflow-wrap:anywhere !important;
+  box-sizing:border-box !important;
+}
+
+.workspace-input{
+  width:100% !important;
+  min-width:0 !important;
+  max-width:100% !important;
+  box-sizing:border-box !important;
+}
+
+.workspace-editor{
+  display:block !important;
+  width:100% !important;
+  min-width:0 !important;
+  max-width:100% !important;
+  box-sizing:border-box !important;
+  white-space:pre !important;
+}
+
+.workspace-preview{
+  width:100% !important;
+  min-width:0 !important;
+  max-width:100% !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+}
+
+.workspace-toolbar{
+  display:flex !important;
+  align-items:center !important;
+  flex-wrap:wrap !important;
+  gap:10px !important;
+  width:100% !important;
+  min-width:0 !important;
+}
+
+.workspace-toolbar .btn{
+  flex:0 0 auto !important;
+  width:auto !important;
+  min-width:max-content !important;
+  white-space:nowrap !important;
+}
+
+/* Homepage/workspace action buttons */
+.actions{
+  display:flex !important;
+  flex-wrap:wrap !important;
+  gap:10px !important;
+  width:100% !important;
+  min-width:0 !important;
+}
+
+.actions .btn{
+  flex:0 0 auto !important;
+  width:auto !important;
+  min-width:max-content !important;
+  white-space:nowrap !important;
+}
+
+/* Never allow documentation text to collapse into one character per line */
+.workspace-shell,
+.workspace-shell *{
+  word-break:normal;
+  overflow-wrap:normal;
+}
+
+.workspace-shell p,
+.workspace-shell strong,
+.workspace-shell h1,
+.workspace-shell h2,
+.workspace-shell h3{
+  max-width:100%;
+}
+
+/* Mobile */
+@media (max-width:760px){
+
+  .workspace-shell{
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    width:100% !important;
+    min-width:0 !important;
+    overflow:visible !important;
+  }
+
+  .workspace-nav{
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:8px !important;
+    width:100% !important;
+    min-width:0 !important;
+    padding:10px !important;
+    box-sizing:border-box !important;
+  }
+
+  .workspace-nav-title{
+    grid-column:1 / -1 !important;
+    width:100% !important;
+  }
+
+  .workspace-tab{
+    width:100% !important;
+    min-width:0 !important;
+    max-width:none !important;
+    justify-content:center !important;
+    padding:10px 8px !important;
+    white-space:nowrap !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+  }
+
+  .workspace-main{
+    width:100% !important;
+    min-width:0 !important;
+    overflow:visible !important;
+  }
+
+  .workspace-page{
+    width:100% !important;
+    min-width:0 !important;
+    overflow:visible !important;
+  }
+
+  .workspace-page .grid{
+    grid-template-columns:1fr !important;
+  }
+
+  .workspace-toolbar{
+    width:100% !important;
+    flex-wrap:wrap !important;
+  }
+
+  .workspace-toolbar .btn{
+    flex:0 0 auto !important;
+    width:auto !important;
+    min-width:max-content !important;
+  }
+
+  .workspace-terminal{
+    font-size:13px !important;
+    overflow-x:auto !important;
+    white-space:pre !important;
+  }
+
+  .workspace-editor{
+    min-height:360px !important;
+    font-size:13px !important;
+  }
+
+  .actions{
+    flex-wrap:wrap !important;
+  }
+
+  .actions .btn{
+    flex:1 1 auto !important;
+    min-width:max-content !important;
+  }
+}
+
+/* Very small phones */
+@media (max-width:380px){
+
+  .workspace-nav{
+    grid-template-columns:1fr !important;
+  }
+
+  .workspace-nav-title{
+    grid-column:auto !important;
+  }
+
+  .workspace-tab{
+    justify-content:flex-start !important;
+  }
+
+  .actions .btn{
+    width:100% !important;
+    flex:1 1 100% !important;
+  }
+}
