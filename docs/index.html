@@ -1,0 +1,1351 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1020">
+<meta name="description" content="CodeGrid documentation — a focused, mobile-first development workspace that runs in your browser.">
+<title>CodeGrid — Documentation</title>
+
+<style>
+:root{
+  --bg:#0b1020;
+  --bg-soft:#0e1528;
+  --panel:#111a2e;
+  --panel-2:#151f35;
+  --panel-3:#1b2944;
+  --line:#263653;
+  --text:#edf4ff;
+  --text-soft:#c6d3e9;
+  --muted:#8799b8;
+  --blue:#65a8ff;
+  --blue-soft:#9ac8ff;
+  --green:#55d6a5;
+  --yellow:#e9c66d;
+  --red:#ff7f94;
+  --code:#080d18;
+  --max:1380px;
+  --sidebar:250px;
+  --toc:220px;
+  --header:64px;
+}
+
+*{box-sizing:border-box}
+
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:90px;
+}
+
+body{
+  margin:0;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 70% -10%,rgba(67,119,211,.18),transparent 34rem),
+    var(--bg);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.65;
+}
+
+a{
+  color:var(--blue-soft);
+  text-decoration:none;
+}
+
+a:hover{
+  color:#fff;
+}
+
+button,input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+code,
+pre{
+  font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace;
+}
+
+code{
+  padding:2px 5px;
+  border:1px solid rgba(101,168,255,.12);
+  background:#101a2d;
+  color:#bcd9ff;
+  border-radius:4px;
+  font-size:.9em;
+}
+
+pre code{
+  padding:0;
+  border:0;
+  background:transparent;
+  color:inherit;
+}
+
+.site-header{
+  position:fixed;
+  inset:0 0 auto 0;
+  height:var(--header);
+  z-index:50;
+  display:flex;
+  align-items:center;
+  border-bottom:1px solid var(--line);
+  background:rgba(11,16,32,.88);
+  backdrop-filter:blur(18px);
+}
+
+.header-inner{
+  width:min(100%,var(--max));
+  height:100%;
+  margin:auto;
+  padding:0 22px;
+  display:flex;
+  align-items:center;
+  gap:28px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#fff;
+  font-weight:850;
+  letter-spacing:-.035em;
+  min-width:var(--sidebar);
+}
+
+.brand-mark{
+  width:30px;
+  height:30px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,#9ed5ff,#4e84f4);
+  color:#07101f;
+  font-size:14px;
+  font-weight:950;
+  border-radius:8px;
+}
+
+.brand small{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.04em;
+}
+
+.header-nav{
+  display:flex;
+  align-items:center;
+  gap:22px;
+  color:var(--muted);
+  font-size:13px;
+  font-weight:650;
+}
+
+.header-nav a:hover{
+  color:#fff;
+}
+
+.header-spacer{
+  flex:1;
+}
+
+.github-link{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:var(--text-soft);
+  font-size:12px;
+  font-weight:700;
+}
+
+.search{
+  width:190px;
+  height:34px;
+  padding:0 11px;
+  border:1px solid var(--line);
+  border-radius:7px;
+  outline:0;
+  color:var(--text);
+  background:#0c1425;
+  font-size:12px;
+}
+
+.search:focus{
+  border-color:#4c78b8;
+}
+
+.mobile-menu{
+  display:none;
+  width:36px;
+  height:36px;
+  border:1px solid var(--line);
+  border-radius:7px;
+  background:var(--panel);
+  color:var(--text);
+}
+
+.layout{
+  width:min(100%,var(--max));
+  margin:auto;
+  padding-top:var(--header);
+  display:grid;
+  grid-template-columns:var(--sidebar) minmax(0,1fr) var(--toc);
+}
+
+.sidebar{
+  position:sticky;
+  top:var(--header);
+  height:calc(100vh - var(--header));
+  overflow:auto;
+  padding:32px 18px 40px 22px;
+  border-right:1px solid var(--line);
+}
+
+.nav-section{
+  margin-bottom:28px;
+}
+
+.nav-label{
+  margin:0 0 9px;
+  color:#667a9d;
+  font-size:10px;
+  font-weight:850;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+}
+
+.nav-link{
+  display:block;
+  padding:6px 9px;
+  border-left:2px solid transparent;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.45;
+}
+
+.nav-link:hover{
+  color:var(--text);
+}
+
+.nav-link.active{
+  border-left-color:var(--blue);
+  color:#e4efff;
+  background:linear-gradient(90deg,rgba(101,168,255,.12),transparent);
+}
+
+.content{
+  min-width:0;
+  padding:58px 58px 90px;
+}
+
+.eyebrow{
+  margin-bottom:12px;
+  color:var(--blue);
+  font-size:11px;
+  font-weight:850;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+
+h1{
+  max-width:850px;
+  margin:0;
+  font-size:clamp(38px,5vw,62px);
+  line-height:1.04;
+  letter-spacing:-.055em;
+}
+
+.hero-lead{
+  max-width:760px;
+  margin:22px 0 30px;
+  color:var(--text-soft);
+  font-size:17px;
+  line-height:1.75;
+}
+
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:55px;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:38px;
+  padding:0 14px;
+  border:1px solid var(--line);
+  border-radius:7px;
+  background:var(--panel);
+  color:var(--text-soft);
+  font-size:12px;
+  font-weight:800;
+}
+
+.btn:hover{
+  border-color:#4a6897;
+  color:#fff;
+  background:var(--panel-2);
+}
+
+.btn.primary{
+  border-color:#4c83da;
+  color:#fff;
+  background:#326ecb;
+}
+
+.btn.primary:hover{
+  background:#3f7ddd;
+}
+
+.rule{
+  height:1px;
+  margin:0 0 54px;
+  background:var(--line);
+}
+
+section{
+  scroll-margin-top:90px;
+}
+
+section + section{
+  margin-top:72px;
+}
+
+h2{
+  margin:0 0 16px;
+  font-size:29px;
+  line-height:1.2;
+  letter-spacing:-.035em;
+}
+
+h3{
+  margin:32px 0 10px;
+  font-size:18px;
+  line-height:1.3;
+  letter-spacing:-.02em;
+}
+
+p{
+  color:var(--text-soft);
+}
+
+.lead{
+  max-width:800px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  margin:25px 0;
+}
+
+.card{
+  min-height:150px;
+  padding:20px;
+  border:1px solid var(--line);
+  background:linear-gradient(145deg,rgba(21,31,53,.9),rgba(13,20,35,.9));
+}
+
+.card strong{
+  display:block;
+  margin-bottom:7px;
+  color:#fff;
+  font-size:14px;
+}
+
+.card p{
+  margin:0;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.65;
+}
+
+.card-label{
+  margin-bottom:14px;
+  color:var(--blue);
+  font-size:10px;
+  font-weight:850;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+
+.callout{
+  margin:24px 0;
+  padding:16px 18px;
+  border-left:3px solid var(--blue);
+  background:#0f192c;
+}
+
+.callout strong{
+  color:#fff;
+}
+
+.callout p{
+  margin:4px 0 0;
+  font-size:13px;
+}
+
+.callout.warning{
+  border-left-color:var(--yellow);
+}
+
+.callout.danger{
+  border-left-color:var(--red);
+}
+
+.code-wrap{
+  position:relative;
+  margin:20px 0 26px;
+  border:1px solid #22324f;
+  background:var(--code);
+  overflow:hidden;
+}
+
+.code-head{
+  display:flex;
+  align-items:center;
+  min-height:38px;
+  padding:0 12px;
+  border-bottom:1px solid #1b2942;
+  color:#7185a7;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+}
+
+.copy{
+  margin-left:auto;
+  padding:5px 8px;
+  border:1px solid #293b5c;
+  border-radius:5px;
+  color:#8fa5c8;
+  background:#0d1627;
+  font-size:10px;
+  font-weight:750;
+}
+
+.copy:hover{
+  color:#fff;
+  border-color:#49678f;
+}
+
+pre{
+  margin:0;
+  padding:18px;
+  overflow:auto;
+  color:#c8d7ee;
+  font-size:12px;
+  line-height:1.7;
+}
+
+.kw{color:#9dc8ff}
+.str{color:#8eddbb}
+.fn{color:#d6b9ff}
+.cm{color:#627898}
+
+.table-wrap{
+  margin:20px 0;
+  overflow:auto;
+  border:1px solid var(--line);
+}
+
+table{
+  width:100%;
+  min-width:600px;
+  border-collapse:collapse;
+}
+
+th,td{
+  padding:11px 13px;
+  border-bottom:1px solid var(--line);
+  text-align:left;
+  vertical-align:top;
+  font-size:12px;
+}
+
+th{
+  color:#a9bad5;
+  background:#111a2d;
+  font-size:10px;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+}
+
+td{
+  color:var(--text-soft);
+}
+
+tr:last-child td{
+  border-bottom:0;
+}
+
+.architecture{
+  padding:24px;
+  border:1px solid var(--line);
+  background:#080e1a;
+  overflow:auto;
+}
+
+.architecture pre{
+  padding:0;
+  color:#a9c4e8;
+}
+
+.steps{
+  display:grid;
+  gap:12px;
+  margin:24px 0;
+}
+
+.step{
+  display:grid;
+  grid-template-columns:34px 1fr;
+  gap:12px;
+  padding:14px;
+  border:1px solid var(--line);
+  background:var(--panel);
+}
+
+.step-number{
+  width:28px;
+  height:28px;
+  display:grid;
+  place-items:center;
+  border:1px solid #38547f;
+  color:var(--blue);
+  background:#0d182b;
+  font-size:11px;
+  font-weight:850;
+}
+
+.step strong{
+  display:block;
+  color:#fff;
+  font-size:13px;
+}
+
+.step p{
+  margin:3px 0 0;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.endpoint{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin-top:16px;
+  padding:10px 12px;
+  border:1px solid var(--line);
+  background:#0d1526;
+  font-family:monospace;
+  font-size:12px;
+}
+
+.method{
+  padding:3px 6px;
+  color:#0b1523;
+  background:#7fb8ff;
+  border-radius:3px;
+  font-size:9px;
+  font-weight:900;
+}
+
+.method.post{
+  background:#83d9b5;
+}
+
+.toc{
+  position:sticky;
+  top:var(--header);
+  height:calc(100vh - var(--header));
+  padding:58px 18px 40px 20px;
+}
+
+.toc-title{
+  margin-bottom:10px;
+  color:#6c7fa1;
+  font-size:10px;
+  font-weight:850;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+.toc a{
+  display:block;
+  padding:4px 0;
+  color:#788baa;
+  font-size:11px;
+}
+
+.toc a:hover{
+  color:#fff;
+}
+
+.next-prev{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:80px;
+}
+
+.next-prev a{
+  padding:14px;
+  border:1px solid var(--line);
+  background:var(--panel);
+}
+
+.next-prev span{
+  display:block;
+  margin-bottom:5px;
+  color:#667b9e;
+  font-size:9px;
+  font-weight:850;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+
+.next-prev strong{
+  color:#d8e7ff;
+  font-size:12px;
+}
+
+footer{
+  margin-top:90px;
+  padding-top:25px;
+  border-top:1px solid var(--line);
+  color:#657998;
+  font-size:11px;
+}
+
+@media(max-width:1100px){
+  :root{--toc:0px}
+  .layout{grid-template-columns:var(--sidebar) minmax(0,1fr)}
+  .toc{display:none}
+}
+
+@media(max-width:760px){
+  :root{--sidebar:0px}
+
+  .header-inner{
+    padding:0 14px;
+  }
+
+  .brand{
+    min-width:auto;
+  }
+
+  .header-nav,
+  .search,
+  .github-link{
+    display:none;
+  }
+
+  .mobile-menu{
+    display:block;
+  }
+
+  .layout{
+    display:block;
+  }
+
+  .sidebar{
+    position:fixed;
+    inset:var(--header) auto 0 0;
+    width:min(290px,85vw);
+    z-index:40;
+    display:none;
+    background:#0b1222;
+    box-shadow:20px 0 60px rgba(0,0,0,.35);
+  }
+
+  .sidebar.open{
+    display:block;
+  }
+
+  .content{
+    padding:42px 20px 70px;
+  }
+
+  h1{
+    font-size:40px;
+  }
+
+  .hero-lead{
+    font-size:15px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .next-prev{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+
+    <button class="mobile-menu" id="menuBtn" aria-label="Open documentation menu">☰</button>
+
+    <a class="brand" href="#top">
+      <span class="brand-mark">CG</span>
+      <span>
+        CodeGrid
+        <small>DOCUMENTATION</small>
+      </span>
+    </a>
+
+    <nav class="header-nav">
+      <a href="#getting-started">Getting Started</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#api">API</a>
+    </nav>
+
+    <div class="header-spacer"></div>
+
+    <input class="search" id="search" type="search" placeholder="Search docs…">
+
+    <a class="github-link" href="https://github.com/zskbot/CodeGrid" target="_blank" rel="noreferrer">
+      GitHub ↗
+    </a>
+  </div>
+</header>
+
+<div class="layout">
+
+<aside class="sidebar" id="sidebar">
+
+  <div class="nav-section">
+    <div class="nav-label">Introduction</div>
+    <a class="nav-link active" href="#top">Overview</a>
+    <a class="nav-link" href="#what-is-codegrid">What is CodeGrid?</a>
+    <a class="nav-link" href="#features">Capabilities</a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-label">Build</div>
+    <a class="nav-link" href="#getting-started">Getting Started</a>
+    <a class="nav-link" href="#project-structure">Project Structure</a>
+    <a class="nav-link" href="#architecture">Architecture</a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-label">Workspace</div>
+    <a class="nav-link" href="#terminal">Web Shell</a>
+    <a class="nav-link" href="#explorer">Explorer & Editor</a>
+    <a class="nav-link" href="#preview">Preview</a>
+    <a class="nav-link" href="#git">Git & GitHub</a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-label">Reference</div>
+    <a class="nav-link" href="#api">API Reference</a>
+    <a class="nav-link" href="#github">GitHub Connection</a>
+    <a class="nav-link" href="#configuration">Configuration</a>
+    <a class="nav-link" href="#safety">Safety</a>
+  </div>
+
+</aside>
+
+<main class="content" id="top">
+
+  <div class="eyebrow">CodeGrid / Documentation</div>
+
+  <h1>Build from anywhere.<br>Stay in one workspace.</h1>
+
+  <p class="hero-lead">
+    CodeGrid is a focused, mobile-first development workspace that runs
+    in your browser. Edit files, use a live Bash shell, preview projects,
+    and synchronize source code through Git and GitHub.
+  </p>
+
+  <div class="hero-actions">
+    <a class="btn primary" href="#getting-started">Get started</a>
+    <a class="btn" href="https://github.com/zskbot/CodeGrid" target="_blank" rel="noreferrer">View on GitHub</a>
+  </div>
+
+  <div class="rule"></div>
+
+  <section id="what-is-codegrid">
+    <h2>What is CodeGrid?</h2>
+    <p class="lead">
+      CodeGrid brings the essential parts of a development environment into
+      one browser workspace. The browser provides the interface while the
+      local Node.js server manages files, commands, previews, Git operations,
+      and the GitHub connection.
+    </p>
+
+    <div class="callout">
+      <strong>Default workspace</strong>
+      <p><code>~/CodeGrid/workspace</code> · default server <code>http://127.0.0.1:8899</code></p>
+    </div>
+  </section>
+
+  <section id="features">
+    <h2>Capabilities</h2>
+    <p class="lead">
+      The workspace is deliberately small: every major development operation
+      stays close to the project you are working on.
+    </p>
+
+    <div class="grid">
+
+      <article class="card">
+        <div class="card-label">01 · Shell</div>
+        <strong>Live Web Shell</strong>
+        <p>
+          Persistent browser-connected Bash sessions for commands,
+          package managers, scripts, and project workflows.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="card-label">02 · Files</div>
+        <strong>Explorer & Editor</strong>
+        <p>
+          Browse the workspace tree, open files, create files,
+          edit source code, and persist UTF-8 content.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="card-label">03 · Preview</div>
+        <strong>Instant Preview</strong>
+        <p>
+          Serve workspace content directly through <code>/preview/</code>
+          and inspect the result without leaving the IDE.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="card-label">04 · Source</div>
+        <strong>Git & GitHub</strong>
+        <p>
+          Clone repositories, pull changes, stage and commit,
+          push updates, and connect a GitHub repository.
+        </p>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="getting-started">
+    <h2>Getting Started</h2>
+    <p class="lead">
+      CodeGrid runs as a Node.js application and exposes its workspace
+      through a local browser interface.
+    </p>
+
+    <h3>Prerequisites</h3>
+
+    <div class="grid">
+      <div class="card">
+        <strong>Node.js 18+</strong>
+        <p>The current project targets Node.js 18 or newer.</p>
+      </div>
+      <div class="card">
+        <strong>Git + Bash</strong>
+        <p>Git is required for source-control operations. Bash and <code>script</code> provide the live shell.</p>
+      </div>
+    </div>
+
+    <h3>Install</h3>
+
+    <div class="code-wrap">
+      <div class="code-head">
+        Terminal
+        <button class="copy" data-copy="git clone &lt;your-codegrid-repository-url&gt;&#10;cd CodeGrid&#10;npm install">Copy</button>
+      </div>
+      <pre><code><span class="kw">git</span> clone &lt;your-codegrid-repository-url&gt;
+<span class="kw">cd</span> CodeGrid
+<span class="kw">npm</span> install</code></pre>
+    </div>
+
+    <h3>Start CodeGrid</h3>
+
+    <div class="code-wrap">
+      <div class="code-head">
+        Terminal
+        <button class="copy" data-copy="npm start">Copy</button>
+      </div>
+      <pre><code><span class="kw">npm</span> start</code></pre>
+    </div>
+
+    <p>
+      Then open <code>http://127.0.0.1:8899</code>.
+      To use another port:
+    </p>
+
+    <div class="code-wrap">
+      <div class="code-head">
+        Terminal
+        <button class="copy" data-copy="PORT=3000 npm start">Copy</button>
+      </div>
+      <pre><code><span class="kw">PORT</span>=3000 <span class="kw">npm</span> start</code></pre>
+    </div>
+
+    <h3>Termux</h3>
+
+    <p>
+      The repository includes <code>run-codegrid.sh</code>, which manages
+      the CodeGrid process and uses port <code>8899</code> by default.
+    </p>
+
+    <div class="code-wrap">
+      <div class="code-head">
+        Termux
+        <button class="copy" data-copy="chmod +x run-codegrid.sh&#10;./run-codegrid.sh">Copy</button>
+      </div>
+      <pre><code><span class="kw">chmod</span> +x run-codegrid.sh
+./run-codegrid.sh</code></pre>
+    </div>
+  </section>
+
+  <section id="project-structure">
+    <h2>Project Structure</h2>
+
+    <p>
+      CodeGrid separates the browser workspace from the server-side
+      runtime and keeps project files inside the workspace root.
+    </p>
+
+    <div class="architecture">
+<pre>CodeGrid/
+├── public/
+│   └── index.html
+│
+├── server/
+│   └── index.js
+│
+├── workspace/
+│   └── your project files
+│
+├── api/
+├── runtime/
+├── github/
+│
+├── run-codegrid.sh
+├── package.json
+└── docs/
+    └── index.html</pre>
+    </div>
+  </section>
+
+  <section id="architecture">
+    <h2>Architecture</h2>
+
+    <p class="lead">
+      CodeGrid uses a simple browser-to-server architecture. HTTP handles
+      workspace operations while WebSocket provides the interactive shell.
+    </p>
+
+    <div class="architecture">
+<pre>
+┌──────────────────────────────────────────────────────────────┐
+│                         Browser UI                           │
+│                                                              │
+│  Explorer       Editor        Web Shell        Preview       │
+└───────┬───────────┬─────────────┬────────────────┬───────────┘
+        │           │             │                │
+        │ HTTP      │ HTTP        │ WebSocket      │ HTTP
+        ▼           ▼             ▼                ▼
+┌──────────────────────────────────────────────────────────────┐
+│                      CodeGrid Server                         │
+│                         Express                              │
+├───────────────────┬──────────────────────┬───────────────────┤
+│ Workspace API     │ Git / GitHub          │ Bash Shell        │
+│                   │                      │                   │
+│ Files             │ Clone / Pull         │ Persistent PTY    │
+│ Read / Write      │ Commit / Push        │                   │
+└─────────┬─────────┴──────────┬───────────┴─────────┬─────────┘
+          │                    │                     │
+          ▼                    ▼                     ▼
+     Workspace               GitHub                 Bash
+</pre>
+    </div>
+
+    <div class="callout">
+      <strong>Design principle</strong>
+      <p>
+        The browser is the workspace interface; the local server remains
+        responsible for filesystem and process access.
+      </p>
+    </div>
+  </section>
+
+  <section id="terminal">
+    <h2>Web Shell</h2>
+
+    <p class="lead">
+      The terminal is connected to the server through WebSocket.
+      Commands execute inside the CodeGrid workspace rather than inside
+      the browser itself.
+    </p>
+
+    <div class="code-wrap">
+      <div class="code-head">Workspace</div>
+      <pre><code>~/CodeGrid/workspace</code></pre>
+    </div>
+
+    <div class="grid">
+      <article class="card">
+        <strong>Persistent connection</strong>
+        <p>The browser maintains a WebSocket connection to the shell service.</p>
+      </article>
+
+      <article class="card">
+        <strong>Terminal output</strong>
+        <p>ANSI-oriented shell output is normalized for the browser terminal surface.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="explorer">
+    <h2>Explorer & Editor</h2>
+
+    <p>
+      The Explorer maps the workspace filesystem into a recursive file tree.
+      Selecting a file loads its content into the browser editor.
+    </p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <div>
+          <strong>Browse</strong>
+          <p>Load the recursive workspace tree.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">2</div>
+        <div>
+          <strong>Edit</strong>
+          <p>Open a file and modify its plain-text content.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">3</div>
+        <div>
+          <strong>Save</strong>
+          <p>Persist the updated UTF-8 content back into the workspace.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="preview">
+    <h2>Preview</h2>
+
+    <p>
+      Workspace files can be served through the CodeGrid preview route.
+      This makes it possible to inspect a web project directly from the IDE.
+    </p>
+
+    <div class="endpoint">
+      <span class="method">GET</span>
+      <code>/preview/</code>
+      <span>Workspace preview root</span>
+    </div>
+  </section>
+
+  <section id="git">
+    <h2>Git & GitHub</h2>
+
+    <p>
+      CodeGrid treats Git as part of the workspace rather than a separate
+      development tool. Repository operations can be initiated from the IDE.
+    </p>
+
+    <div class="grid">
+      <article class="card">
+        <strong>Clone</strong>
+        <p>Clone a repository into the current workspace.</p>
+      </article>
+
+      <article class="card">
+        <strong>Pull</strong>
+        <p>Synchronize the workspace with its configured remote.</p>
+      </article>
+
+      <article class="card">
+        <strong>Commit</strong>
+        <p>Stage workspace changes and create a Git commit.</p>
+      </article>
+
+      <article class="card">
+        <strong>Push</strong>
+        <p>Send committed workspace changes to the configured remote.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="github">
+    <h2>GitHub Connection</h2>
+
+    <p>
+      CodeGrid uses GitHub's device authorization flow for browser-friendly
+      authentication.
+    </p>
+
+    <h3>Configuration</h3>
+
+    <p>
+      Create <code>.codegrid/github.env</code> in the repository root:
+    </p>
+
+    <div class="code-wrap">
+      <div class="code-head">.codegrid/github.env</div>
+      <pre><code>GITHUB_CLIENT_ID=your_github_oauth_client_id</code></pre>
+    </div>
+
+    <div class="callout warning">
+      <strong>Keep credentials private.</strong>
+      <p>
+        The resulting token is stored locally. Never commit credentials
+        or expose the <code>.codegrid/</code> directory.
+      </p>
+    </div>
+  </section>
+
+  <section id="api">
+    <h2>API Reference</h2>
+
+    <p class="lead">
+      The local CodeGrid server exposes JSON APIs for workspace, Git,
+      and GitHub operations.
+    </p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>Endpoint</th>
+            <th>Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>GET</code></td><td><code>/api/health</code></td><td>Server and runtime status.</td></tr>
+          <tr><td><code>GET</code></td><td><code>/api/workspace</code></td><td>Workspace metadata.</td></tr>
+          <tr><td><code>GET</code></td><td><code>/api/files</code></td><td>Recursive workspace file tree.</td></tr>
+          <tr><td><code>GET</code></td><td><code>/api/file?path=…</code></td><td>Read a workspace file.</td></tr>
+          <tr><td><code>PUT</code></td><td><code>/api/file</code></td><td>Save a file.</td></tr>
+          <tr><td><code>DELETE</code></td><td><code>/api/file</code></td><td>Delete a file or directory.</td></tr>
+          <tr><td><code>GET</code></td><td><code>/api/github/status</code></td><td>GitHub connection status.</td></tr>
+          <tr><td><code>GET</code></td><td><code>/api/github/repos</code></td><td>List repositories.</td></tr>
+          <tr><td><code>POST</code></td><td><code>/api/github/device</code></td><td>Start device authorization.</td></tr>
+          <tr><td><code>POST</code></td><td><code>/api/github/device/poll</code></td><td>Poll authorization progress.</td></tr>
+          <tr><td><code>POST</code></td><td><code>/api/github/link</code></td><td>Configure the workspace remote.</td></tr>
+          <tr><td><code>POST</code></td><td><code>/api/git/clone</code></td><td>Clone a repository.</td></tr>
+          <tr><td><code>POST</code></td><td><code>/api/git/pull</code></td><td>Pull remote changes.</td></tr>
+          <tr><td><code>POST</code></td><td><code>/api/git/commit</code></td><td>Stage and commit changes.</td></tr>
+          <tr><td><code>POST</code></td><td><code>/api/git/push</code></td><td>Push committed changes.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Health check</h3>
+
+    <div class="code-wrap">
+      <div class="code-head">
+        Terminal
+        <button class="copy" data-copy="curl http://127.0.0.1:8899/api/health">Copy</button>
+      </div>
+      <pre><code>curl http://127.0.0.1:8899/api/health</code></pre>
+    </div>
+  </section>
+
+  <section id="configuration">
+    <h2>Configuration</h2>
+
+    <p>
+      The server reads its runtime configuration from the process environment.
+      The most useful setting for local development is the listening port.
+    </p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Variable</th>
+            <th>Example</th>
+            <th>Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>PORT</code></td>
+            <td><code>3000</code></td>
+            <td>Changes the HTTP server port.</td>
+          </tr>
+          <tr>
+            <td><code>GITHUB_CLIENT_ID</code></td>
+            <td><code>your_client_id</code></td>
+            <td>GitHub device authorization client identifier.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="safety">
+    <h2>Safety</h2>
+
+    <p>
+      CodeGrid is designed primarily for trusted local or private-network
+      environments.
+    </p>
+
+    <div class="callout danger">
+      <strong>Do not expose the server directly to the public internet.</strong>
+      <p>
+        The terminal has the same permissions as the process running CodeGrid.
+        Public deployment requires authentication, TLS, network controls,
+        and additional hardening.
+      </p>
+    </div>
+
+    <div class="callout warning">
+      <strong>Review repositories before execution.</strong>
+      <p>
+        Cloning a repository and running its scripts gives those scripts
+        the permissions available to the CodeGrid process.
+      </p>
+    </div>
+  </section>
+
+  <div class="next-prev">
+    <a href="#getting-started">
+      <span>Next</span>
+      <strong>Getting Started →</strong>
+    </a>
+    <a href="#api">
+      <span>Reference</span>
+      <strong>API Reference →</strong>
+    </a>
+  </div>
+
+  <footer>
+    <strong>CodeGrid</strong> · Mobile-first browser development workspace ·
+    Documentation
+  </footer>
+
+</main>
+
+<aside class="toc">
+  <div class="toc-title">On this page</div>
+  <a href="#what-is-codegrid">What is CodeGrid?</a>
+  <a href="#features">Capabilities</a>
+  <a href="#getting-started">Getting Started</a>
+  <a href="#project-structure">Project Structure</a>
+  <a href="#architecture">Architecture</a>
+  <a href="#terminal">Web Shell</a>
+  <a href="#explorer">Explorer & Editor</a>
+  <a href="#preview">Preview</a>
+  <a href="#git">Git & GitHub</a>
+  <a href="#api">API Reference</a>
+  <a href="#configuration">Configuration</a>
+  <a href="#safety">Safety</a>
+</aside>
+
+</div>
+
+<script>
+const menuBtn = document.getElementById("menuBtn");
+const sidebar = document.getElementById("sidebar");
+const search = document.getElementById("search");
+
+menuBtn?.addEventListener("click", () => {
+  sidebar.classList.toggle("open");
+});
+
+document.querySelectorAll(".sidebar a").forEach(link => {
+  link.addEventListener("click", () => {
+    sidebar.classList.remove("open");
+  });
+});
+
+document.querySelectorAll("[data-copy]").forEach(button => {
+  button.addEventListener("click", async () => {
+    const value = button.dataset.copy;
+    try {
+      await navigator.clipboard.writeText(value);
+      const old = button.textContent;
+      button.textContent = "Copied";
+      setTimeout(() => button.textContent = old, 1200);
+    } catch {
+      button.textContent = "Copy failed";
+      setTimeout(() => button.textContent = "Copy", 1200);
+    }
+  });
+});
+
+const navLinks = [...document.querySelectorAll(".nav-link")];
+const sections = navLinks
+  .map(link => document.querySelector(link.getAttribute("href")))
+  .filter(Boolean);
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+
+    navLinks.forEach(link => link.classList.remove("active"));
+
+    const active = navLinks.find(
+      link => link.getAttribute("href") === "#" + entry.target.id
+    );
+
+    active?.classList.add("active");
+  });
+},{
+  rootMargin:"-15% 0px -70% 0px"
+});
+
+sections.forEach(section => observer.observe(section));
+
+search?.addEventListener("input", () => {
+  const query = search.value.trim().toLowerCase();
+
+  if (!query) {
+    navLinks.forEach(link => link.style.display = "");
+    return;
+  }
+
+  navLinks.forEach(link => {
+    const text = link.textContent.toLowerCase();
+    link.style.display = text.includes(query) ? "" : "none";
+  });
+});
+
+document.addEventListener("keydown", event => {
+  if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
+    event.preventDefault();
+    search?.focus();
+  }
+
+  if (event.key === "Escape") {
+    search?.blur();
+  }
+});
+</script>
+
+</body>
+</html>
