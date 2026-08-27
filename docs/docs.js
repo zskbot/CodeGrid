@@ -64,3 +64,35 @@
     }
   });
 })();
+
+document.querySelectorAll('a[href]').forEach(link=>{
+  link.addEventListener('click',event=>{
+    const href=link.getAttribute('href');
+
+    if(
+      !href ||
+      href.startsWith('#') ||
+      href.startsWith('http://') ||
+      href.startsWith('https://') ||
+      href.startsWith('mailto:')
+    ) return;
+
+    event.preventDefault();
+
+    link.classList.add('is-navigating');
+
+    const action=link.querySelector('.card-action,.btn');
+    if(action){
+      const old=action.textContent;
+      action.textContent='Đang mở…';
+
+      setTimeout(()=>{
+        location.href=href;
+      },140);
+    }else{
+      setTimeout(()=>{
+        location.href=href;
+      },100);
+    }
+  });
+});

@@ -572,3 +572,67 @@ footer{
 .card-link:hover .btn{
   transform:translateX(3px);
 }
+
+.action-card{
+  position:relative;
+  overflow:hidden;
+  transition:
+    transform .16s ease,
+    border-color .16s ease,
+    background .16s ease;
+}
+
+.action-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    110deg,
+    transparent 25%,
+    rgba(101,168,255,.10) 50%,
+    transparent 75%
+  );
+  transform:translateX(-120%);
+  transition:transform .35s ease;
+  pointer-events:none;
+}
+
+.action-card:hover{
+  transform:translateY(-2px);
+  border-color:#4c78b8;
+  background:linear-gradient(145deg,#172641,#101a2d);
+}
+
+.action-card:hover::after{
+  transform:translateX(120%);
+}
+
+.card-action{
+  display:inline-flex;
+  align-items:center;
+  width:max-content;
+  margin-top:16px;
+  padding:7px 10px;
+  border:1px solid #36547e;
+  border-radius:6px;
+  background:#0d1729;
+  color:#a9ccff;
+  font-size:11px;
+  font-weight:850;
+  transition:
+    transform .16s ease,
+    background .16s ease,
+    border-color .16s ease,
+    color .16s ease;
+}
+
+.action-card:hover .card-action{
+  transform:translateX(4px);
+  border-color:#5b91d8;
+  background:#172a49;
+  color:#fff;
+}
+
+.action-card:active{
+  transform:translateY(0) scale(.985);
+}
