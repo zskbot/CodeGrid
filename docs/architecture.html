@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1020">
+<title>CodeGrid — Architecture</title>
+<link rel="stylesheet" href="docs.css">
+</head>
+<body>
+
+<header class="header">
+<div class="header-in">
+
+<button class="menu" aria-label="Open navigation">☰</button>
+
+<a class="brand" href="index.html">
+<span class="mark">CG</span>
+<span>CodeGrid<small>DOCUMENTATION</small></span>
+</a>
+
+<nav class="headnav">
+<a href="getting-started.html">Getting Started</a>
+<a href="architecture.html">Architecture</a>
+<a href="api.html">API</a>
+</nav>
+
+<div class="spacer"></div>
+
+<input
+class="search"
+placeholder="Search docs…"
+aria-label="Search documentation"
+>
+
+<a
+class="github"
+href="https://github.com/zskbot/CodeGrid"
+target="_blank"
+rel="noopener"
+>GitHub ↗</a>
+
+</div>
+</header>
+
+<div class="layout">
+
+<aside class="sidebar">
+
+<div class="nav-group">
+<div class="label">Introduction</div>
+<a class="nav " href="index.html">Overview</a>
+<a class="nav " href="getting-started.html">Getting Started</a>
+</div>
+
+<div class="nav-group">
+<div class="label">Workspace</div>
+<a class="nav " href="web-shell.html">Web Shell</a>
+<a class="nav " href="explorer.html">Explorer &amp; Editor</a>
+<a class="nav " href="preview.html">Preview</a>
+</div>
+
+<div class="nav-group">
+<div class="label">Source Control</div>
+<a class="nav " href="git.html">Git</a>
+<a class="nav " href="github.html">GitHub</a>
+</div>
+
+<div class="nav-group">
+<div class="label">Reference</div>
+<a class="nav active" href="architecture.html">Architecture</a>
+<a class="nav " href="api.html">API Reference</a>
+<a class="nav " href="configuration.html">Configuration</a>
+<a class="nav " href="safety.html">Safety</a>
+</div>
+
+</aside>
+
+<main>
+
+<div class="crumb">CodeGrid / Reference / Architecture</div>
+
+<h1>Architecture</h1>
+
+
+<p class="lead">
+CodeGrid keeps the browser UI thin while the local Node.js server manages
+workspace files, Git, GitHub and the shell.
+</p>
+
+<section>
+<div class="arch">
+<pre>
+Browser UI
+    │
+    ├── HTTP ───────► Express APIs ─────► Workspace / Git / GitHub
+    │
+    └── WebSocket ──► Bash shell ───────► ~/CodeGrid/workspace
+
+Browser preview ────► /preview/ ────────► Workspace files
+</pre>
+</div>
+</section>
+
+<section>
+<h2>Runtime model</h2>
+
+<div class="grid">
+
+<div class="card">
+<strong>Browser</strong>
+<p>Provides Explorer, Editor, Shell and Preview interfaces.</p>
+</div>
+
+<div class="card">
+<strong>Express server</strong>
+<p>Provides HTTP APIs and static file serving.</p>
+</div>
+
+<div class="card">
+<strong>Workspace</strong>
+<p>Stores editable project files and preview content.</p>
+</div>
+
+<div class="card">
+<strong>WebSocket shell</strong>
+<p>Connects the browser to a persistent Bash process.</p>
+</div>
+
+</div>
+</section>
+
+
+<div class="pager">
+
+<a href="getting-started.html">
+<small>Previous</small>
+<strong>← Getting Started</strong>
+</a>
+
+<a href="web-shell.html">
+<small>Next</small>
+<strong>Web Shell →</strong>
+</a>
+
+</div>
+
+<footer>
+<strong>CodeGrid</strong> · Browser development workspace
+</footer>
+
+</main>
+
+<aside class="toc">
+<div class="toc-title">On this page</div>
+<a href="#">Top</a>
+</aside>
+
+</div>
+
+<script src="docs.js"></script>
+</body>
+</html>

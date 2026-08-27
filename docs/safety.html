@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0b1020">
-<title>CodeGrid — Build from anywhere.</title>
+<title>CodeGrid — Safety</title>
 <link rel="stylesheet" href="docs.css">
 </head>
 <body>
@@ -49,7 +49,7 @@ rel="noopener"
 
 <div class="nav-group">
 <div class="label">Introduction</div>
-<a class="nav active" href="index.html">Overview</a>
+<a class="nav " href="index.html">Overview</a>
 <a class="nav " href="getting-started.html">Getting Started</a>
 </div>
 
@@ -71,100 +71,117 @@ rel="noopener"
 <a class="nav " href="architecture.html">Architecture</a>
 <a class="nav " href="api.html">API Reference</a>
 <a class="nav " href="configuration.html">Configuration</a>
-<a class="nav " href="safety.html">Safety</a>
+<a class="nav active" href="safety.html">Safety</a>
 </div>
 
 </aside>
 
 <main>
 
-<div class="crumb">CodeGrid / Overview</div>
+<div class="crumb">CodeGrid / Reference / Safety</div>
 
-<h1>Build from anywhere.</h1>
+<h1>Safety</h1>
 
 
 <p class="lead">
-CodeGrid is a focused, mobile-first development workspace that runs in your browser.
-Edit files, use a live Bash shell, preview projects, and synchronize source code
-through Git and GitHub.
+CodeGrid provides direct access to local files, processes and Git operations.
+Run it only in environments where you trust the users and code being executed.
 </p>
 
-<div class="actions">
-<a class="btn primary" href="getting-started.html">Get started</a>
-<a class="btn" href="architecture.html">Explore architecture</a>
-<a class="btn" href="api.html">API Reference</a>
-<a class="btn" href="https://github.com/zskbot/CodeGrid" target="_blank" rel="noopener">GitHub ↗</a>
-</div>
-
-<div class="rule"></div>
-
 <section>
-<h2>The workspace</h2>
+
+<h2>Security model</h2>
 
 <div class="grid">
 
-<a class="card card-link" href="web-shell.html">
-<strong>Web Shell</strong>
-<p>Persistent browser-connected Bash sessions for development commands and workflows.</p>
-</a>
+<div class="card">
+<strong>Process permissions</strong>
+<p>The Web Shell runs with the permissions of the process that started CodeGrid.</p>
+</div>
 
-<a class="card card-link" href="explorer.html">
-<strong>Explorer &amp; Editor</strong>
-<p>Browse, open, create, edit and save workspace files.</p>
-</a>
+<div class="card">
+<strong>Workspace access</strong>
+<p>File operations are intended to remain inside the configured workspace.</p>
+</div>
 
-<a class="card card-link" href="preview.html">
-<strong>Instant Preview</strong>
-<p>Serve workspace content through the built-in preview route.</p>
-</a>
+<div class="card">
+<strong>Git operations</strong>
+<p>Clone, pull, commit and push operations modify real repositories.</p>
+</div>
 
-<a class="card card-link" href="git.html">
-<strong>Git &amp; GitHub</strong>
-<p>Clone, pull, commit, push and connect repositories.</p>
-</a>
+<div class="card">
+<strong>Preview</strong>
+<p>Preview serves workspace content through the local CodeGrid server.</p>
+</div>
 
 </div>
+
 </section>
 
 <section>
-<h2>Start here</h2>
+
+<h2>Recommended deployment</h2>
+
+<div class="callout">
+<strong>Trusted local or private-network use</strong>
+<p>
+Do not expose an unauthenticated CodeGrid instance directly to the public internet.
+</p>
+</div>
 
 <div class="grid">
 
-<a class="card card-link" href="getting-started.html">
-<strong>01 · Getting Started</strong>
-<p>Install dependencies and launch CodeGrid.</p>
-</a>
+<div class="card">
+<strong>Authentication</strong>
+<p>Add authentication before exposing the service to other users.</p>
+</div>
 
-<a class="card card-link" href="architecture.html">
-<strong>02 · Architecture</strong>
-<p>Understand the browser, server, workspace and shell.</p>
-</a>
+<div class="card">
+<strong>TLS</strong>
+<p>Use HTTPS/TLS when CodeGrid is accessed over an untrusted network.</p>
+</div>
 
-<a class="card card-link" href="api.html">
-<strong>03 · API Reference</strong>
-<p>Explore the local JSON API surface.</p>
-</a>
+<div class="card">
+<strong>Credentials</strong>
+<p>Never commit GitHub tokens or private configuration.</p>
+</div>
 
-<a class="card card-link" href="configuration.html">
-<strong>04 · Configuration</strong>
-<p>Configure ports and GitHub integration.</p>
-</a>
+<div class="card">
+<strong>Repositories</strong>
+<p>Review repositories before cloning or executing their scripts.</p>
+</div>
 
 </div>
+
+</section>
+
+<section>
+
+<h2>Protected files</h2>
+
+<div class="code">
+<div class="codebar">
+Local credentials
+<button class="copy" data-copy=".codegrid/github.env&#10;.codegrid/github.token">Copy</button>
+</div>
+
+<pre><code>.codegrid/github.env
+.codegrid/github.token</code></pre>
+</div>
+
 </section>
 
 
 <div class="pager">
 
-<a href="index.html">
+<a href="configuration.html">
 <small>Previous</small>
-<strong>← Overview</strong>
+<strong>← Configuration</strong>
 </a>
 
-<a href="getting-started.html">
+<a href="index.html">
 <small>Next</small>
-<strong>Getting Started →</strong>
+<strong>Overview →</strong>
 </a>
 
 </div>

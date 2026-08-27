@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1020">
+<title>CodeGrid — API Reference</title>
+<link rel="stylesheet" href="docs.css">
+</head>
+<body>
+
+<header class="header">
+<div class="header-in">
+
+<button class="menu" aria-label="Open navigation">☰</button>
+
+<a class="brand" href="index.html">
+<span class="mark">CG</span>
+<span>CodeGrid<small>DOCUMENTATION</small></span>
+</a>
+
+<nav class="headnav">
+<a href="getting-started.html">Getting Started</a>
+<a href="architecture.html">Architecture</a>
+<a href="api.html">API</a>
+</nav>
+
+<div class="spacer"></div>
+
+<input
+class="search"
+placeholder="Search docs…"
+aria-label="Search documentation"
+>
+
+<a
+class="github"
+href="https://github.com/zskbot/CodeGrid"
+target="_blank"
+rel="noopener"
+>GitHub ↗</a>
+
+</div>
+</header>
+
+<div class="layout">
+
+<aside class="sidebar">
+
+<div class="nav-group">
+<div class="label">Introduction</div>
+<a class="nav " href="index.html">Overview</a>
+<a class="nav " href="getting-started.html">Getting Started</a>
+</div>
+
+<div class="nav-group">
+<div class="label">Workspace</div>
+<a class="nav " href="web-shell.html">Web Shell</a>
+<a class="nav " href="explorer.html">Explorer &amp; Editor</a>
+<a class="nav " href="preview.html">Preview</a>
+</div>
+
+<div class="nav-group">
+<div class="label">Source Control</div>
+<a class="nav " href="git.html">Git</a>
+<a class="nav " href="github.html">GitHub</a>
+</div>
+
+<div class="nav-group">
+<div class="label">Reference</div>
+<a class="nav " href="architecture.html">Architecture</a>
+<a class="nav active" href="api.html">API Reference</a>
+<a class="nav " href="configuration.html">Configuration</a>
+<a class="nav " href="safety.html">Safety</a>
+</div>
+
+</aside>
+
+<main>
+
+<div class="crumb">CodeGrid / Reference / API</div>
+
+<h1>API Reference</h1>
+
+
+<p class="lead">
+The local CodeGrid server exposes JSON endpoints for workspace, Git and GitHub
+operations.
+</p>
+
+<section>
+
+<div class="table">
+
+<table>
+
+<thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Purpose</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr><td>GET</td><td><code>/api/health</code></td><td>Server and runtime status.</td></tr>
+<tr><td>GET</td><td><code>/api/workspace</code></td><td>Workspace metadata.</td></tr>
+<tr><td>GET</td><td><code>/api/files</code></td><td>Recursive file tree.</td></tr>
+<tr><td>GET</td><td><code>/api/file?path=…</code></td><td>Read a file.</td></tr>
+<tr><td>PUT</td><td><code>/api/file</code></td><td>Save a file.</td></tr>
+<tr><td>DELETE</td><td><code>/api/file</code></td><td>Delete a file or directory.</td></tr>
+<tr><td>GET</td><td><code>/api/github/status</code></td><td>GitHub connection status.</td></tr>
+<tr><td>GET</td><td><code>/api/github/repos</code></td><td>Repository list.</td></tr>
+<tr><td>POST</td><td><code>/api/github/device</code></td><td>Start device authorization.</td></tr>
+<tr><td>POST</td><td><code>/api/github/device/poll</code></td><td>Poll authorization.</td></tr>
+<tr><td>POST</td><td><code>/api/github/link</code></td><td>Link workspace remote.</td></tr>
+<tr><td>POST</td><td><code>/api/git/clone</code></td><td>Clone repository.</td></tr>
+<tr><td>POST</td><td><code>/api/git/pull</code></td><td>Pull changes.</td></tr>
+<tr><td>POST</td><td><code>/api/git/commit</code></td><td>Commit changes.</td></tr>
+<tr><td>POST</td><td><code>/api/git/push</code></td><td>Push changes.</td></tr>
+
+</tbody>
+</table>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>Health check</h2>
+
+<div class="code">
+<div class="codebar">
+Terminal
+<button class="copy" data-copy="curl http://127.0.0.1:8899/api/health">Copy</button>
+</div>
+
+<pre><code>curl http://127.0.0.1:8899/api/health</code></pre>
+</div>
+
+</section>
+
+
+<div class="pager">
+
+<a href="github.html">
+<small>Previous</small>
+<strong>← GitHub</strong>
+</a>
+
+<a href="configuration.html">
+<small>Next</small>
+<strong>Configuration →</strong>
+</a>
+
+</div>
+
+<footer>
+<strong>CodeGrid</strong> · Browser development workspace
+</footer>
+
+</main>
+
+<aside class="toc">
+<div class="toc-title">On this page</div>
+<a href="#">Top</a>
+</aside>
+
+</div>
+
+<script src="docs.js"></script>
+</body>
+</html>

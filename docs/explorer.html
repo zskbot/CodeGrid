@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1020">
+<title>CodeGrid — Explorer & Editor</title>
+<link rel="stylesheet" href="docs.css">
+</head>
+<body>
+
+<header class="header">
+<div class="header-in">
+
+<button class="menu" aria-label="Open navigation">☰</button>
+
+<a class="brand" href="index.html">
+<span class="mark">CG</span>
+<span>CodeGrid<small>DOCUMENTATION</small></span>
+</a>
+
+<nav class="headnav">
+<a href="getting-started.html">Getting Started</a>
+<a href="architecture.html">Architecture</a>
+<a href="api.html">API</a>
+</nav>
+
+<div class="spacer"></div>
+
+<input
+class="search"
+placeholder="Search docs…"
+aria-label="Search documentation"
+>
+
+<a
+class="github"
+href="https://github.com/zskbot/CodeGrid"
+target="_blank"
+rel="noopener"
+>GitHub ↗</a>
+
+</div>
+</header>
+
+<div class="layout">
+
+<aside class="sidebar">
+
+<div class="nav-group">
+<div class="label">Introduction</div>
+<a class="nav " href="index.html">Overview</a>
+<a class="nav " href="getting-started.html">Getting Started</a>
+</div>
+
+<div class="nav-group">
+<div class="label">Workspace</div>
+<a class="nav " href="web-shell.html">Web Shell</a>
+<a class="nav active" href="explorer.html">Explorer &amp; Editor</a>
+<a class="nav " href="preview.html">Preview</a>
+</div>
+
+<div class="nav-group">
+<div class="label">Source Control</div>
+<a class="nav " href="git.html">Git</a>
+<a class="nav " href="github.html">GitHub</a>
+</div>
+
+<div class="nav-group">
+<div class="label">Reference</div>
+<a class="nav " href="architecture.html">Architecture</a>
+<a class="nav " href="api.html">API Reference</a>
+<a class="nav " href="configuration.html">Configuration</a>
+<a class="nav " href="safety.html">Safety</a>
+</div>
+
+</aside>
+
+<main>
+
+<div class="crumb">CodeGrid / Workspace / Explorer</div>
+
+<h1>Explorer & Editor</h1>
+
+
+<p class="lead">
+The Explorer maps the workspace filesystem into a recursive browser tree and
+opens selected files in the editor.
+</p>
+
+<section>
+
+<div class="grid">
+
+<div class="card">
+<strong>Browse</strong>
+<p>Load and navigate the workspace tree.</p>
+</div>
+
+<div class="card">
+<strong>Open</strong>
+<p>Select a file and load its content into the editor.</p>
+</div>
+
+<div class="card">
+<strong>Edit</strong>
+<p>Edit plain-text source files directly in the browser.</p>
+</div>
+
+<div class="card">
+<strong>Save</strong>
+<p>Persist UTF-8 file content back to the workspace.</p>
+</div>
+
+<div class="card">
+<strong>Create</strong>
+<p>Create new workspace files from the IDE.</p>
+</div>
+
+<div class="card">
+<strong>Refresh</strong>
+<p>Reload the current workspace tree.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<div class="pager">
+
+<a href="web-shell.html">
+<small>Previous</small>
+<strong>← Web Shell</strong>
+</a>
+
+<a href="preview.html">
+<small>Next</small>
+<strong>Preview →</strong>
+</a>
+
+</div>
+
+<footer>
+<strong>CodeGrid</strong> · Browser development workspace
+</footer>
+
+</main>
+
+<aside class="toc">
+<div class="toc-title">On this page</div>
+<a href="#">Top</a>
+</aside>
+
+</div>
+
+<script src="docs.js"></script>
+</body>
+</html>

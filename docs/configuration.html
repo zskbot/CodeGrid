@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1020">
+<title>CodeGrid — Configuration</title>
+<link rel="stylesheet" href="docs.css">
+</head>
+<body>
+
+<header class="header">
+<div class="header-in">
+
+<button class="menu" aria-label="Open navigation">☰</button>
+
+<a class="brand" href="index.html">
+<span class="mark">CG</span>
+<span>CodeGrid<small>DOCUMENTATION</small></span>
+</a>
+
+<nav class="headnav">
+<a href="getting-started.html">Getting Started</a>
+<a href="architecture.html">Architecture</a>
+<a href="api.html">API</a>
+</nav>
+
+<div class="spacer"></div>
+
+<input
+class="search"
+placeholder="Search docs…"
+aria-label="Search documentation"
+>
+
+<a
+class="github"
+href="https://github.com/zskbot/CodeGrid"
+target="_blank"
+rel="noopener"
+>GitHub ↗</a>
+
+</div>
+</header>
+
+<div class="layout">
+
+<aside class="sidebar">
+
+<div class="nav-group">
+<div class="label">Introduction</div>
+<a class="nav " href="index.html">Overview</a>
+<a class="nav " href="getting-started.html">Getting Started</a>
+</div>
+
+<div class="nav-group">
+<div class="label">Workspace</div>
+<a class="nav " href="web-shell.html">Web Shell</a>
+<a class="nav " href="explorer.html">Explorer &amp; Editor</a>
+<a class="nav " href="preview.html">Preview</a>
+</div>
+
+<div class="nav-group">
+<div class="label">Source Control</div>
+<a class="nav " href="git.html">Git</a>
+<a class="nav " href="github.html">GitHub</a>
+</div>
+
+<div class="nav-group">
+<div class="label">Reference</div>
+<a class="nav " href="architecture.html">Architecture</a>
+<a class="nav " href="api.html">API Reference</a>
+<a class="nav active" href="configuration.html">Configuration</a>
+<a class="nav " href="safety.html">Safety</a>
+</div>
+
+</aside>
+
+<main>
+
+<div class="crumb">CodeGrid / Reference / Configuration</div>
+
+<h1>Configuration</h1>
+
+
+<p class="lead">
+Configure the CodeGrid server through environment variables and local GitHub
+authentication settings.
+</p>
+
+<section>
+
+<h2>Environment variables</h2>
+
+<div class="table">
+
+<table>
+
+<thead>
+<tr>
+<th>Variable</th>
+<th>Example</th>
+<th>Purpose</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td><code>PORT</code></td>
+<td><code>3000</code></td>
+<td>Changes the HTTP server port.</td>
+</tr>
+
+<tr>
+<td><code>GITHUB_CLIENT_ID</code></td>
+<td><code>your_client_id</code></td>
+<td>GitHub device authorization client identifier.</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>Change the port</h2>
+
+<div class="code">
+<div class="codebar">
+Terminal
+<button class="copy" data-copy="PORT=3000 npm start">Copy</button>
+</div>
+
+<pre><code>PORT=3000 npm start</code></pre>
+</div>
+
+</section>
+
+<section>
+
+<h2>GitHub configuration</h2>
+
+<div class="code">
+<div class="codebar">
+.codegrid/github.env
+<button class="copy" data-copy="GITHUB_CLIENT_ID=your_github_oauth_client_id">Copy</button>
+</div>
+
+<pre><code>GITHUB_CLIENT_ID=your_github_oauth_client_id</code></pre>
+</div>
+
+<div class="callout">
+<strong>Keep credentials private.</strong>
+<p>
+Do not commit GitHub credentials or authentication tokens to the repository.
+</p>
+</div>
+
+</section>
+
+
+<div class="pager">
+
+<a href="api.html">
+<small>Previous</small>
+<strong>← API Reference</strong>
+</a>
+
+<a href="safety.html">
+<small>Next</small>
+<strong>Safety →</strong>
+</a>
+
+</div>
+
+<footer>
+<strong>CodeGrid</strong> · Browser development workspace
+</footer>
+
+</main>
+
+<aside class="toc">
+<div class="toc-title">On this page</div>
+<a href="#">Top</a>
+</aside>
+
+</div>
+
+<script src="docs.js"></script>
+</body>
+</html>
