@@ -79,7 +79,7 @@
     });
   });
 
-  const editor = document.querySelector("#workspace-editor-input");
+  const editor = document.querySelector("#workspace-editor");
   const save = document.querySelector("[data-save-editor]");
   const editorStatus = document.querySelector("#editor-status");
 
