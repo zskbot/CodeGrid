@@ -775,3 +775,101 @@ footer{
     padding:16px;
   }
 }
+
+/* ===== CODEGRID WORKSPACE LAYOUT FIX ===== */
+.workspace-shell{
+  width:100%;
+  min-height:calc(100vh - var(--header));
+  display:grid;
+  grid-template-columns:280px minmax(0,1fr) 320px;
+  overflow:hidden;
+}
+
+.workspace-sidebar{
+  min-width:0;
+  border-right:1px solid var(--line);
+  overflow:auto;
+}
+
+.workspace-main{
+  min-width:0;
+  width:100%;
+  overflow:auto;
+}
+
+.workspace-panel{
+  min-width:0;
+  border-left:1px solid var(--line);
+  overflow:auto;
+}
+
+.workspace-grid{
+  width:100%;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(280px,420px);
+  gap:14px;
+}
+
+.workspace-card{
+  min-width:0;
+  width:100%;
+}
+
+.workspace-terminal,
+.workspace-editor,
+.workspace-preview{
+  width:100%;
+  min-width:0;
+}
+
+@media (max-width:1100px){
+  .workspace-shell{
+    grid-template-columns:240px minmax(0,1fr);
+  }
+
+  .workspace-panel{
+    display:none;
+  }
+
+  .workspace-grid{
+    grid-template-columns:minmax(0,1fr);
+  }
+}
+
+@media (max-width:760px){
+  .workspace-shell{
+    display:block;
+    overflow:visible;
+  }
+
+  .workspace-sidebar{
+    width:100%;
+    border-right:0;
+    border-bottom:1px solid var(--line);
+  }
+
+  .workspace-main{
+    width:100%;
+  }
+
+  .workspace-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+/* Do not let generic docs rules collapse workspace controls */
+.workspace-shell button,
+.workspace-shell input,
+.workspace-shell textarea,
+.workspace-shell select{
+  max-width:100%;
+}
+
+.workspace-shell .grid{
+  width:100%;
+}
+
+.workspace-shell pre{
+  max-width:100%;
+  overflow:auto;
+}
