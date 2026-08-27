@@ -558,3 +558,17 @@ footer{
     grid-template-columns:1fr
   }
 }
+
+.card-link .btn{
+  margin-top:16px;
+  width:max-content;
+  pointer-events:none;
+}
+
+.card-link{
+  cursor:pointer;
+}
+
+.card-link:hover .btn{
+  transform:translateX(3px);
+}
