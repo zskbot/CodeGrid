@@ -6,29 +6,23 @@
   "main": "server/index.js",
   "scripts": {
     "start": "node server/index.js",
-    "dev": "node server/index.js"
+    "dev": "node server/index.js",
+    "check-lfs": "node ./build/check-lfs.js",
+    "lint": "eslint **/*.js",
+    "prepare": "husky install",
+    "generate-sidebar": "node ./build/generate-sidebar.js",
+    "serve": "npm run generate-sidebar && docsify serve ."
   },
   "dependencies": {
     "express": "^5.1.0",
     "ws": "^8.18.3"
-  }
-}
-{
-  "name": "vscode-docs",
-  "version": "0.10.3",
+  },
   "author": {
     "name": "Microsoft Corporation"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/microsoft/vscode-docs.git"
-  },
-  "scripts": {
-    "check-lfs": "node ./build/check-lfs.js",
-    "lint": "eslint **/*.js",
-    "prepare": "husky install",
-    "generate-sidebar": "node ./build/generate-sidebar.js",
-    "serve": "npm run generate-sidebar && docsify serve ."
   },
   "devDependencies": {
     "docsify-cli": "^4.4.4",

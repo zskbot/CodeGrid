@@ -638,976 +638,312 @@ footer{
 }
 
 /* ===== INTERACTIVE WORKSPACE ===== */
-.workspace-shell{
-  display:grid;
-  grid-template-columns:210px minmax(0,1fr);
-  min-height:520px;
-  margin:28px 0 50px;
-  border:1px solid var(--line);
-  background:#080e1a;
-}
-.workspace-nav{
-  border-right:1px solid var(--line);
-  padding:12px;
-  background:#0b1220;
-}
-.workspace-nav-title{
-  padding:9px;
-  color:#657998;
-  font-size:9px;
-  font-weight:900;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-}
-.workspace-tab{
-  display:block;
-  width:100%;
-  margin:2px 0;
-  padding:10px;
-  border:1px solid transparent;
-  background:transparent;
-  color:#8fa3c4;
-  text-align:left;
-  cursor:pointer;
-  font-size:11px;
-  font-weight:750;
-}
-.workspace-tab:hover,
-.workspace-tab.active{
-  border-color:#263653;
-  background:#111a2e;
-  color:#fff;
-}
-.workspace-main{
-  min-width:0;
-  padding:24px;
-}
-.workspace-page{
-  display:none;
-}
-.workspace-page.active{
-  display:block;
-}
-.workspace-toolbar{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-bottom:18px;
-}
-.workspace-toolbar .btn{
-  cursor:pointer;
-}
-.workspace-terminal{
-  min-height:300px;
-  padding:16px;
-  border:1px solid #1d2b45;
-  background:#050912;
-  color:#b9d0ed;
-  font:12px/1.7 "SFMono-Regular",Consolas,monospace;
-  white-space:pre-wrap;
-}
-.workspace-input{
-  width:100%;
-  margin-top:10px;
-  height:40px;
-  border:1px solid #263653;
-  background:#0a1220;
-  color:#fff;
-  padding:0 11px;
-  outline:0;
-  font:12px monospace;
-}
-.workspace-input:focus{
-  border-color:#4c83da;
-}
-.workspace-file{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding:11px 12px;
-  border-bottom:1px solid #1b2942;
-  color:#b8c9e3;
-  font-size:12px;
-  cursor:pointer;
-}
-.workspace-file:hover{
-  background:#111a2e;
-  color:#fff;
-}
-.workspace-editor{
-  width:100%;
-  min-height:330px;
-  resize:vertical;
-  border:1px solid #263653;
-  background:#050912;
-  color:#c8d7ee;
-  padding:15px;
-  outline:0;
-  font:12px/1.7 "SFMono-Regular",Consolas,monospace;
-}
-.workspace-preview{
-  width:100%;
-  min-height:330px;
-  border:1px solid #263653;
-  background:#fff;
-}
-.workspace-status{
-  margin-top:12px;
-  color:#7185a7;
-  font-size:10px;
-}
-@media(max-width:760px){
-  .workspace-shell{
-    grid-template-columns:1fr;
-  }
-  .workspace-nav{
-    border-right:0;
-    border-bottom:1px solid var(--line);
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-  }
-  .workspace-nav-title{
-    grid-column:1/-1;
-  }
-  .workspace-main{
-    padding:16px;
-  }
-}
-
-/* ===== CODEGRID WORKSPACE LAYOUT FIX ===== */
-.workspace-shell{
-  width:100%;
-  min-height:calc(100vh - var(--header));
-  display:grid;
-  grid-template-columns:280px minmax(0,1fr) 320px;
-  overflow:hidden;
-}
-
-.workspace-sidebar{
-  min-width:0;
-  border-right:1px solid var(--line);
-  overflow:auto;
-}
-
-.workspace-main{
-  min-width:0;
-  width:100%;
-  overflow:auto;
-}
-
-.workspace-panel{
-  min-width:0;
-  border-left:1px solid var(--line);
-  overflow:auto;
-}
-
-.workspace-grid{
-  width:100%;
-  display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(280px,420px);
-  gap:14px;
-}
-
-.workspace-card{
-  min-width:0;
-  width:100%;
-}
-
-.workspace-terminal,
-.workspace-editor,
-.workspace-preview{
-  width:100%;
-  min-width:0;
-}
-
-@media (max-width:1100px){
-  .workspace-shell{
-    grid-template-columns:240px minmax(0,1fr);
-  }
-
-  .workspace-panel{
-    display:none;
-  }
-
-  .workspace-grid{
-    grid-template-columns:minmax(0,1fr);
-  }
-}
-
-@media (max-width:760px){
-  .workspace-shell{
-    display:block;
-    overflow:visible;
-  }
-
-  .workspace-sidebar{
-    width:100%;
-    border-right:0;
-    border-bottom:1px solid var(--line);
-  }
-
-  .workspace-main{
-    width:100%;
-  }
-
-  .workspace-grid{
-    grid-template-columns:1fr;
-  }
-}
-
-/* Do not let generic docs rules collapse workspace controls */
-.workspace-shell button,
-.workspace-shell input,
-.workspace-shell textarea,
-.workspace-shell select{
-  max-width:100%;
-}
-
-.workspace-shell .grid{
-  width:100%;
-}
-
-.workspace-shell pre{
-  max-width:100%;
-  overflow:auto;
-}
 
 /* =========================================================
-   CODEGRID MOBILE / RESPONSIVE HARD FIX
-   Prevent vertical character wrapping and squeezed controls
-   ========================================================= */
-
-html,
-body{
-  width:100%;
-  min-width:0;
-  overflow-x:hidden;
-}
-
-*,
-*::before,
-*::after{
-  min-width:0;
-}
-
-.header,
-.header-in{
-  width:100%;
-  min-width:0;
-}
-
-.header-in{
-  flex-wrap:nowrap;
-}
-
-.brand{
-  flex:0 0 auto;
-  width:auto;
-  min-width:max-content;
-  white-space:nowrap;
-}
-
-.brand span,
-.brand small{
-  white-space:nowrap;
-}
-
-.headnav{
-  flex:0 1 auto;
-  min-width:0;
-  white-space:nowrap;
-}
-
-.menu{
-  flex:0 0 36px;
-  width:36px;
-  min-width:36px;
-  white-space:nowrap;
-}
-
-.layout{
-  width:100%;
-  min-width:0;
-}
-
-.sidebar{
-  min-width:0;
-}
-
-.nav-group{
-  width:100%;
-  min-width:0;
-}
-
-.label{
-  width:auto;
-  min-width:max-content;
-  white-space:nowrap;
-}
-
-.nav{
-  width:100%;
-  min-width:0;
-  display:flex;
-  align-items:center;
-  min-height:34px;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-main{
-  min-width:0;
-  width:100%;
-}
-
-.actions{
-  display:flex;
-  flex-wrap:wrap;
-  align-items:center;
-  width:100%;
-  min-width:0;
-  gap:10px;
-}
-
-.btn{
-  flex:0 0 auto;
-  width:max-content;
-  min-width:max-content;
-  white-space:nowrap;
-}
-
-.card-link{
-  width:100%;
-  min-width:0;
-  overflow:hidden;
-}
-
-.card-link strong,
-.card-link p,
-.card-action{
-  max-width:100%;
-}
-
-.card-link strong{
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-.card-action{
-  display:inline-flex;
-  align-items:center;
-  width:max-content;
-  min-width:max-content;
-  white-space:nowrap;
-}
-
-.grid{
-  width:100%;
-  min-width:0;
-}
-
-.grid > *,
-.workspace-grid > *,
-.workspace-shell > *{
-  min-width:0;
-}
-
-/* Workspace controls */
-.workspace-shell{
-  width:100%;
-  min-width:0;
-}
-
-.workspace-shell button{
-  flex:0 0 auto;
-  min-width:max-content;
-  white-space:nowrap;
-}
-
-.workspace-shell input,
-.workspace-shell textarea{
-  width:100%;
-  min-width:0;
-}
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media(max-width:760px){
-
-  .header{
-    height:58px;
-  }
-
-  .header-in{
-    height:58px;
-    padding:0 12px;
-    gap:10px;
-  }
-
-  .menu{
-    display:grid;
-    place-items:center;
-    flex:0 0 38px;
-    width:38px;
-    min-width:38px;
-    height:38px;
-  }
-
-  .brand{
-    flex:1 1 auto;
-    min-width:0;
-    overflow:hidden;
-  }
-
-  .brand > span:last-child{
-    min-width:0;
-    overflow:hidden;
-    text-overflow:ellipsis;
-  }
-
-  .brand small{
-    display:block;
-    overflow:hidden;
-    text-overflow:ellipsis;
-  }
-
-  .layout{
-    display:block;
-    width:100%;
-    padding-top:58px;
-  }
-
-  .sidebar{
-    width:min(310px,88vw);
-    max-width:88vw;
-  }
-
-  main{
-    width:100%;
-    padding:34px 16px 60px;
-    overflow:hidden;
-  }
-
-  h1{
-    width:100%;
-    max-width:100%;
-    font-size:clamp(34px,10vw,44px);
-    line-height:1.08;
-    overflow-wrap:normal;
-    word-break:normal;
-  }
-
-  h2{
-    width:100%;
-    max-width:100%;
-  }
-
-  .lead{
-    width:100%;
-    max-width:100%;
-  }
-
-  .actions{
-    width:100%;
-    display:flex;
-    flex-direction:column;
-    align-items:stretch;
-  }
-
-  .actions .btn{
-    width:100%;
-    min-width:0;
-    justify-content:center;
-  }
-
-  .grid{
-    grid-template-columns:1fr;
-    width:100%;
-  }
-
-  .card{
-    width:100%;
-    min-width:0;
-  }
-
-  .card-link strong{
-    white-space:normal;
-    overflow:visible;
-    text-overflow:clip;
-    word-break:normal;
-    overflow-wrap:normal;
-  }
-
-  .pager{
-    grid-template-columns:1fr;
-    width:100%;
-  }
-
-  .pager a{
-    min-width:0;
-  }
-
-  .code{
-    width:100%;
-    max-width:100%;
-  }
-
-  .codebar{
-    min-width:0;
-    gap:8px;
-    white-space:nowrap;
-  }
-
-  .codebar .copy{
-    margin-left:auto;
-    flex:0 0 auto;
-  }
-
-  pre{
-    max-width:100%;
-    overflow-x:auto;
-    white-space:pre;
-  }
-
-  table{
-    min-width:560px;
-  }
-
-  .workspace-shell{
-    display:block;
-    width:100%;
-  }
-
-  .workspace-sidebar,
-  .workspace-main,
-  .workspace-panel{
-    width:100%;
-    min-width:0;
-  }
-
-  .workspace-panel{
-    display:block;
-    border-left:0;
-    border-top:1px solid var(--line);
-  }
-
-  .workspace-grid{
-    display:grid;
-    grid-template-columns:1fr;
-    width:100%;
-  }
-}
-
-/* Very narrow phones */
-@media(max-width:380px){
-
-  .header-in{
-    padding:0 8px;
-    gap:7px;
-  }
-
-  .brand{
-    font-size:13px;
-  }
-
-  main{
-    padding-left:12px;
-    padding-right:12px;
-  }
-
-  .nav{
-    font-size:13px;
-  }
-
-  .btn{
-    min-height:40px;
-  }
-}
-
-/* =========================================================
-   CODEGRID WORKSPACE — FINAL LAYOUT OVERRIDE
-   HTML structure:
+   CODEGRID WORKSPACE
+   Single authoritative layout
+   HTML:
    .workspace-shell
      ├── .workspace-nav
      └── .workspace-main
    ========================================================= */
 
-.workspace-shell{
-  display:grid !important;
-  grid-template-columns:minmax(210px,260px) minmax(0,1fr) !important;
-  width:100% !important;
-  max-width:none !important;
-  min-width:0 !important;
-  overflow:hidden !important;
-  box-sizing:border-box !important;
+.workspace-shell {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
-.workspace-nav{
-  display:flex !important;
-  flex-direction:column !important;
-  width:auto !important;
-  min-width:0 !important;
-  max-width:none !important;
-  box-sizing:border-box !important;
-  overflow:hidden !important;
+.workspace-shell *,
+.workspace-shell *::before,
+.workspace-shell *::after {
+  box-sizing: border-box;
 }
 
-.workspace-nav-title{
-  width:100% !important;
-  min-width:0 !important;
-  white-space:nowrap !important;
-  overflow:hidden !important;
-  text-overflow:ellipsis !important;
+.workspace-nav {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  overflow: hidden;
 }
 
-.workspace-tab{
-  display:flex !important;
-  align-items:center !important;
-  width:100% !important;
-  min-width:0 !important;
-  max-width:none !important;
-  flex:0 0 auto !important;
-  box-sizing:border-box !important;
-  white-space:nowrap !important;
-  overflow:hidden !important;
-  text-overflow:ellipsis !important;
+.workspace-nav-title {
+  width: 100%;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.workspace-main{
-  display:block !important;
-  width:100% !important;
-  min-width:0 !important;
-  max-width:none !important;
-  overflow:hidden !important;
-  box-sizing:border-box !important;
+.workspace-tab {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  flex: 0 0 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: normal;
+  overflow-wrap: normal;
 }
 
-.workspace-page{
-  width:100% !important;
-  min-width:0 !important;
-  max-width:none !important;
-  box-sizing:border-box !important;
-  overflow:hidden !important;
+.workspace-main {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  overflow: hidden;
 }
 
-.workspace-page.active{
-  display:block !important;
+.workspace-page {
+  display: none;
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
-.workspace-page .grid{
-  width:100% !important;
-  min-width:0 !important;
-  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+.workspace-page.active {
+  display: block;
+}
+
+.workspace-page > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.workspace-page .grid {
+  width: 100%;
+  min-width: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .workspace-page .card,
-.workspace-card{
-  min-width:0 !important;
-  max-width:100% !important;
-  box-sizing:border-box !important;
-}
-
-.workspace-shell button,
-.workspace-shell a,
-.workspace-shell input,
-.workspace-shell textarea{
-  box-sizing:border-box !important;
-}
-
-.workspace-shell button,
-.workspace-shell .btn{
-  white-space:nowrap !important;
-  word-break:normal !important;
-  overflow-wrap:normal !important;
-}
-
-.workspace-terminal{
-  width:100% !important;
-  min-width:0 !important;
-  max-width:100% !important;
-  overflow:auto !important;
-  white-space:pre-wrap !important;
-  overflow-wrap:anywhere !important;
-  box-sizing:border-box !important;
-}
-
-.workspace-input{
-  width:100% !important;
-  min-width:0 !important;
-  max-width:100% !important;
-  box-sizing:border-box !important;
-}
-
-.workspace-editor{
-  display:block !important;
-  width:100% !important;
-  min-width:0 !important;
-  max-width:100% !important;
-  box-sizing:border-box !important;
-  white-space:pre !important;
-}
-
-.workspace-preview{
-  width:100% !important;
-  min-width:0 !important;
-  max-width:100% !important;
-  box-sizing:border-box !important;
-  overflow:hidden !important;
-}
-
-.workspace-toolbar{
-  display:flex !important;
-  align-items:center !important;
-  flex-wrap:wrap !important;
-  gap:10px !important;
-  width:100% !important;
-  min-width:0 !important;
-}
-
-.workspace-toolbar .btn{
-  flex:0 0 auto !important;
-  width:auto !important;
-  min-width:max-content !important;
-  white-space:nowrap !important;
-}
-
-/* Homepage/workspace action buttons */
-.actions{
-  display:flex !important;
-  flex-wrap:wrap !important;
-  gap:10px !important;
-  width:100% !important;
-  min-width:0 !important;
-}
-
-.actions .btn{
-  flex:0 0 auto !important;
-  width:auto !important;
-  min-width:max-content !important;
-  white-space:nowrap !important;
-}
-
-/* Never allow documentation text to collapse into one character per line */
-.workspace-shell,
-.workspace-shell *{
-  word-break:normal;
-  overflow-wrap:normal;
+.workspace-card {
+  min-width: 0;
+  max-width: 100%;
 }
 
 .workspace-shell p,
 .workspace-shell strong,
 .workspace-shell h1,
 .workspace-shell h2,
-.workspace-shell h3{
-  max-width:100%;
+.workspace-shell h3,
+.workspace-shell h4,
+.workspace-shell span,
+.workspace-shell label {
+  word-break: normal;
+  overflow-wrap: normal;
+  max-width: 100%;
 }
 
-/* Mobile */
-@media (max-width:760px){
-
-  .workspace-shell{
-    display:grid !important;
-    grid-template-columns:1fr !important;
-    width:100% !important;
-    min-width:0 !important;
-    overflow:visible !important;
-  }
-
-  .workspace-nav{
-    display:grid !important;
-    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
-    gap:8px !important;
-    width:100% !important;
-    min-width:0 !important;
-    padding:10px !important;
-    box-sizing:border-box !important;
-  }
-
-  .workspace-nav-title{
-    grid-column:1 / -1 !important;
-    width:100% !important;
-  }
-
-  .workspace-tab{
-    width:100% !important;
-    min-width:0 !important;
-    max-width:none !important;
-    justify-content:center !important;
-    padding:10px 8px !important;
-    white-space:nowrap !important;
-    overflow:hidden !important;
-    text-overflow:ellipsis !important;
-  }
-
-  .workspace-main{
-    width:100% !important;
-    min-width:0 !important;
-    overflow:visible !important;
-  }
-
-  .workspace-page{
-    width:100% !important;
-    min-width:0 !important;
-    overflow:visible !important;
-  }
-
-  .workspace-page .grid{
-    grid-template-columns:1fr !important;
-  }
-
-  .workspace-toolbar{
-    width:100% !important;
-    flex-wrap:wrap !important;
-  }
-
-  .workspace-toolbar .btn{
-    flex:0 0 auto !important;
-    width:auto !important;
-    min-width:max-content !important;
-  }
-
-  .workspace-terminal{
-    font-size:13px !important;
-    overflow-x:auto !important;
-    white-space:pre !important;
-  }
-
-  .workspace-editor{
-    min-height:360px !important;
-    font-size:13px !important;
-  }
-
-  .actions{
-    flex-wrap:wrap !important;
-  }
-
-  .actions .btn{
-    flex:1 1 auto !important;
-    min-width:max-content !important;
-  }
+.workspace-shell button,
+.workspace-shell a,
+.workspace-shell input,
+.workspace-shell textarea,
+.workspace-shell select {
+  box-sizing: border-box;
 }
 
-/* Very small phones */
-@media (max-width:380px){
+.workspace-shell button,
+.workspace-shell .btn {
+  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
+}
 
-  .workspace-nav{
-    grid-template-columns:1fr !important;
+.workspace-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+}
+
+.workspace-toolbar .btn {
+  flex: 0 0 auto;
+  width: auto;
+  min-width: max-content;
+  white-space: nowrap;
+}
+
+.workspace-terminal {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: auto;
+  white-space: pre;
+  box-sizing: border-box;
+}
+
+.workspace-input {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.workspace-editor {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  white-space: pre;
+  overflow: auto;
+}
+
+.workspace-preview {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+}
+
+.actions .btn {
+  flex: 0 0 auto;
+  width: auto;
+  min-width: max-content;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 760px) {
+  .workspace-shell {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    min-width: 0;
+    overflow: visible;
   }
 
-  .workspace-nav-title{
-    grid-column:auto !important;
+  .workspace-nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+    padding: 10px;
+    overflow: visible;
   }
 
-  .workspace-tab{
-    justify-content:flex-start !important;
+  .workspace-nav-title {
+    grid-column: 1 / -1;
+    width: 100%;
   }
 
-  .actions .btn{
-    width:100% !important;
-    flex:1 1 100% !important;
+  .workspace-tab {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    justify-content: center;
+    padding: 10px 8px;
+  }
+
+  .workspace-main {
+    width: 100%;
+    min-width: 0;
+    overflow: visible;
+  }
+
+  .workspace-page {
+    width: 100%;
+    min-width: 0;
+    overflow: visible;
+  }
+
+  .workspace-page .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .workspace-toolbar {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .workspace-toolbar .btn {
+    flex: 0 0 auto;
+    width: auto;
+    min-width: max-content;
+  }
+
+  .workspace-terminal {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    white-space: pre;
+    font-size: 13px;
+  }
+
+  .workspace-editor {
+    width: 100%;
+    min-width: 0;
+    min-height: 360px;
+    font-size: 13px;
+    overflow: auto;
+  }
+
+  .workspace-preview {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .actions .btn {
+    flex: 1 1 auto;
+    min-width: max-content;
   }
 }
 
 /* =========================================================
-   FINAL MOBILE WIDTH FIX
-   Prevent docs pages from collapsing into a narrow column.
+   VERY SMALL PHONES
    ========================================================= */
 
-@media (max-width:760px){
-
-  html,
-  body{
-    width:100% !important;
-    min-width:0 !important;
-    max-width:none !important;
-    overflow-x:hidden !important;
+@media (max-width: 380px) {
+  .workspace-nav {
+    grid-template-columns: 1fr;
   }
 
-  .layout{
-    display:block !important;
-    width:100% !important;
-    min-width:0 !important;
-    max-width:none !important;
-    margin:0 !important;
-    padding:0 !important;
+  .workspace-nav-title {
+    grid-column: auto;
   }
 
-  .layout > main,
-  main{
-    display:block !important;
-    width:100% !important;
-    min-width:0 !important;
-    max-width:none !important;
-    margin:0 !important;
-    box-sizing:border-box !important;
+  .workspace-tab {
+    justify-content: flex-start;
   }
 
-  .layout > main > *,
-  main > *{
-    min-width:0 !important;
-    max-width:100% !important;
-    box-sizing:border-box !important;
-  }
-
-  .crumb,
-  .lead,
-  main h1,
-  main h2,
-  main h3,
-  main p{
-    width:100% !important;
-    min-width:0 !important;
-    max-width:100% !important;
-    box-sizing:border-box !important;
-  }
-
-  main h1{
-    white-space:normal !important;
-    word-break:normal !important;
-    overflow-wrap:normal !important;
-  }
-
-  .hero,
-  .hero-content,
-  .content,
-  .page,
-  .article{
-    width:100% !important;
-    min-width:0 !important;
-    max-width:none !important;
-    box-sizing:border-box !important;
-  }
-
-  .grid{
-    width:100% !important;
-    min-width:0 !important;
-    box-sizing:border-box !important;
-  }
-
-  .card{
-    min-width:0 !important;
-    max-width:100% !important;
-    box-sizing:border-box !important;
-  }
-}
-
-/* Small phones */
-@media (max-width:380px){
-
-  main{
-    width:100% !important;
-    min-width:0 !important;
-    max-width:none !important;
-  }
-
-  main h1{
-    font-size:clamp(42px,12vw,64px) !important;
-    line-height:.95 !important;
+  .actions .btn {
+    width: 100%;
+    flex: 1 1 100%;
   }
 }
