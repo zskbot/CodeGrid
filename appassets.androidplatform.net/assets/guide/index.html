@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gemiwi Generated Project</title>
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f8f9fa;
+  color: #1a1a1a;
+  font-family: Inter, Arial, sans-serif;
+}
+
+header {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+  border-bottom: 2px solid #1a1a1a;
+  background: white;
+  font-weight: 900;
+}
+
+main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 60px 20px;
+}
+
+.label {
+  display: inline-block;
+  padding: 8px 10px;
+  border: 1px solid #1a1a1a;
+  background: #2563eb;
+  color: white;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+h1 {
+  max-width: 800px;
+  margin: 22px 0;
+  font-size: clamp(42px, 8vw, 82px);
+  line-height: .92;
+  letter-spacing: -4px;
+}
+
+p {
+  max-width: 650px;
+  color: #64748b;
+  line-height: 1.7;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  margin-top: 40px;
+}
+
+.card {
+  padding: 22px;
+  border: 1px solid #1a1a1a;
+  background: white;
+}
+
+.card + .card {
+  border-left: 0;
+}
+
+button {
+  margin-top: 30px;
+  padding: 13px 20px;
+  border: 2px solid #1a1a1a;
+  border-radius: 0;
+  background: white;
+  font-weight: 900;
+}
+
+button:hover {
+  transform: translate(-2px,-2px);
+  box-shadow: 3px 3px 0 #1a1a1a;
+}
+
+@media(max-width:700px) {
+  main {
+    padding: 35px 16px;
+  }
+
+  h1 {
+    letter-spacing: -2px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card + .card {
+    border-left: 1px solid #1a1a1a;
+    border-top: 0;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+GEMIWI
+</header>
+
+<main>
+
+<div class="label">
+BUILT BY GEMIWI AGENT
+</div>
+
+<h1>
+Your project is ready.
+</h1>
+
+<p>
+Gemiwi understood the request,
+created the project files,
+executed the build pipeline and
+generated this preview inside
+the sandbox workspace.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<strong>AGENT</strong>
+<p>
+Request analyzed and converted
+into build actions.
+</p>
+</div>
+
+<div class="card">
+<strong>SANDBOX</strong>
+<p>
+Project files created inside
+the isolated Gemiwi workspace.
+</p>
+</div>
+
+<div class="card">
+<strong>BUILD</strong>
+<p>
+Production build completed
+successfully.
+</p>
+</div>
+
+</div>
+
+<button onclick="alert('Gemiwi application is running.')">
+TEST APPLICATION
+</button>
+
+</main>
+
+</body>
+</html>
