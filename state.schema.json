@@ -1,0 +1,528 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "Được tạo từ types/state.ts — không được chỉnh sửa",
+  "$id": "https://microsoft.github.io/agent-host-protocol/schema/state.schema.json",
+  "Tiêu đề": "Các loại trạng thái AHP",
+  "Mô tả": "Tất cả các loại trạng thái trong Giao thức Máy chủ Tác nhân."
+  "$defs": {
+    "Biểu tượng": {
+      "kiểu": "đối tượng",
+      "Mô tả": "Một biểu tượng có thể tùy chỉnh kích thước, được hiển thị trong giao diện người dùng."
+      "của cải": {
+        "nguồn": {
+          "$ref": "#/$defs/URI",
+          "Mô tả": "Một URI chuẩn trỏ đến tài nguyên biểu tượng. Có thể là URL HTTP/HTTPS hoặc URI `data:` với dữ liệu hình ảnh được mã hóa Base64.\n\nNgười dùng NÊN thực hiện các bước để đảm bảo các URL cung cấp biểu tượng đến từ cùng một miền với máy khách/máy chủ hoặc một miền đáng tin cậy.\n\nNgười dùng NÊN thực hiện các biện pháp phòng ngừa thích hợp khi sử dụng SVG vì chúng có thể chứa JavaScript có thể thực thi."
+        },
+        "contentType": {
+          "kiểu": "chuỗi",
+          "Mô tả": "Tùy chọn ghi đè kiểu MIME nếu kiểu MIME nguồn bị thiếu hoặc chung chung.\nVí dụ: `\"image/png\"`, `\"image/jpeg\"` hoặc `\"image/svg+xml\"`."
+        },
+        "kích thước": {
+          "kiểu": "mảng",
+          "mặt hàng": {
+            "kiểu": "chuỗi"
+          },
+          "Mô tả": "Mảng chuỗi tùy chọn chỉ định kích thước mà biểu tượng có thể được sử dụng.\nMỗi chuỗi phải ở định dạng WxH (ví dụ: `\"48x48\"`, `\"96x96\"`) hoặc `\"any\"` đối với các định dạng có thể mở rộng như SVG.\n\nNếu không được cung cấp, khách hàng nên giả định rằng biểu tượng có thể được sử dụng ở bất kỳ kích thước nào."
+        },
+        "chủ đề": {
+          "kiểu": "chuỗi",
+          "enum": [
+            "ánh sáng",
+            "tối tăm"
+          ],
+          "Mô tả": "Tùy chọn chỉ định chủ đề mà biểu tượng này được thiết kế. `\"sáng\"` cho biết biểu tượng được thiết kế để sử dụng với nền sáng, và `\"tối\"` cho biết biểu tượng được thiết kế để sử dụng với nền tối. Nếu không được cung cấp, khách hàng nên giả định rằng biểu tượng có thể được sử dụng với bất kỳ chủ đề nào."
+        }
+      },
+      "yêu cầu": [
+        "nguồn"
+      ]
+    },
+    "ProtectedResourceMetadata": {
+      "kiểu": "đối tượng",
+      "description": "Mô tả các yêu cầu xác thực của tài nguyên được bảo vệ bằng cách sử dụng ngữ nghĩa [RFC 9728](https://datatracker.ietf.org/doc/html/rfc9728) (Siêu dữ liệu tài nguyên được bảo vệ OAuth 2.0).\n\nTên trường sử dụng kiểu snake_case để khớp với định dạng JSON của RFC 9728."
+      "của cải": {
+        "tài nguyên": {
+          "kiểu": "chuỗi",
+          "Mô tả": "BẮT BUỘC. Mã định danh tài nguyên được bảo vệ, một URL sử dụng giao thức `https` mà không có thành phần phân đoạn (ví dụ: `\"https://api.github.com\"`)."
+        },
+        "tên_tài_lực": {
+          "kiểu": "chuỗi",
+          "description": "TÙY CHỌN. Tên dễ đọc của tài nguyên được bảo vệ."
+        },
+        "máy chủ ủy quyền": {
+          "kiểu": "mảng",
+          "mặt hàng": {
+            "kiểu": "chuỗi"
+          },
+          "description": "TÙY CHỌN. Mảng JSON chứa các URL định danh máy chủ ủy quyền OAuth."
+        },
+        "jwks_uri": {
+          "kiểu": "chuỗi",
+          "description": "TÙY CHỌN. URL của tài liệu JWK Set của tài nguyên được bảo vệ."
+        },
+        "scopes_supported": {
+          "kiểu": "mảng",
+          "mặt hàng": {
+            "kiểu": "chuỗi"
+          },
+          "Mô tả": "ĐƯỢC KHUYẾN NGHỊ. Mảng JSON chứa các giá trị phạm vi OAuth 2.0 được sử dụng trong các yêu cầu ủy quyền."
+        },
+        "bearer_methods_supported": {
+          "kiểu": "mảng",
+          "mặt hàng": {
+            "kiểu": "chuỗi"
+          },
+          "description": "TÙY CHỌN. Mảng JSON chứa các phương thức trình bày Bearer Token được hỗ trợ."
+        },
+        "resource_signing_alg_values_supported": {
+          "kiểu": "mảng",
+          "mặt hàng": {
+            "kiểu": "chuỗi"
+          },
+          "description": "TÙY CHỌN. Mảng JSON chứa các thuật toán ký JWS được hỗ trợ."
+        },
+        "tài liệu tài nguyên": {
+          "kiểu": "chuỗi",
+          "Mô tả": "TÙY CHỌN. URL của tài liệu hướng dẫn dễ đọc cho tài nguyên."
+        },
+        "resource_policy_uri": {
+          "kiểu": "chuỗi",
+          "description": "TÙY CHỌN. URL của chính sách sử dụng dữ liệu của tài nguyên."
+        },
+        "resource_tos_uri": {
+          "kiểu": "chuỗi",
+          "Mô tả": "TÙY CHỌN. URL của điều khoản dịch vụ của tài nguyên."
+        },
+        "yêu cầu": {
+          "kiểu": "boolean",
+          "Mô tả": "Phần mở rộng AHP. Liệu có yêu cầu xác thực cho tài nguyên này hay không.\n\n- `true` (mặc định) — không thể sử dụng tác nhân nếu không có mã thông báo hợp lệ.\n Máy chủ NÊN trả về `AuthRequired` (`-32007`) nếu máy khách\n cố gắng sử dụng tác nhân mà không xác thực.\n- `false` — tác nhân hoạt động mà không cần xác thực nhưng CÓ THỂ cung cấp\n các khả năng nâng cao khi có mã thông báo.\n\nMáy khách NÊN coi trường bị thiếu giống như `true`."
+        }
+      },
+      "yêu cầu": [
+        "nguồn lực"
+      ]
+    },
+    "ConfigPropertySchema": {
+      "kiểu": "đối tượng",
+      "Mô tả": "Một bộ mô tả thuộc tính tương thích với JSON Schema với các phần mở rộng hiển thị.\n\nCác trường JSON Schema tiêu chuẩn (`type`, `title`, `description`, `default`,\n`enum`) cho phép các trình xác thực xử lý lược đồ. Các phần mở rộng hiển thị\n(`enumLabels`, `enumDescriptions`) là các mảng song song cung cấp siêu dữ liệu giao diện người dùng cho mỗi giá trị `enum`.\n\nĐây là kiểu cơ sở chung. Xem {@link SessionConfigPropertySchema} để biết các phần mở rộng dành riêng cho phiên."
+      "của cải": {
+        "kiểu": {
+          "kiểu": "chuỗi",
+          "enum": [
+            "sợi dây",
+            "con số",
+            "boolean",
+            "mảng",
+            "sự vật"
+          ],
+          "Mô tả": "Lược đồ JSON: loại thuộc tính"
+        },
+        "tiêu đề": {
+          "kiểu": "chuỗi",
+          "description": "Sơ đồ JSON: nhãn dễ đọc cho thuộc tính"
+        },
+        "Sự miêu tả": {
+          "kiểu": "chuỗi",
+          "Mô tả": "Lược đồ JSON: mô tả / chú thích"
+        },
+        "mặc định": {
+          "Mô tả": "Lược đồ JSON: giá trị mặc định"
+        },
+        "enum": {
+          "kiểu": "mảng",
+          "mặt hàng": {
+            "$ref": "#/$defs/JsonPrimitive"
+          },
+          "description": "Lược đồ JSON: các giá trị được cho phép. Có thể là các kiểu dữ liệu nguyên thủy của bất kỳ kiểu JSON nào."
+        },
+        "enumLabels": {
+          "kiểu": "mảng",
+          "mặt hàng": {
+            "kiểu": "chuỗi"
+          },
+          "Mô tả": "Phần mở rộng hiển thị: nhãn dễ đọc cho mỗi giá trị enum (mảng song song)"
+        },
+        "enumDescriptions": {
+          "kiểu": "mảng",
+          "mặt hàng": {
+            "kiểu": "chuỗi"
+          },
+          "description": "Hiển thị phần mở rộng: mô tả cho mỗi giá trị enum (mảng song song)"
+        },
+        "chỉ đọc": {
+          "kiểu": "boolean",
+          "Mô tả": "Lược đồ JSON: khi `true`, thuộc tính sẽ được hiển thị nhưng người dùng không thể chỉnh sửa"
+        },
+        "mặt hàng": {
+          "$ref": "#/$defs/ConfigPropertySchema",
+          "description": "Lược đồ JSON: lược đồ cho các phần tử mảng (được sử dụng khi `type` là `'array'`)"
+        },
+        "của cải": {
+          "kiểu": "đối tượng",
+          "additionalProperties": {
+            "$ref": "#/$defs/ConfigPropertySchema"
+          },
+          "description": "Lược đồ JSON: mô tả thuộc tính cho các thuộc tính của đối tượng (được sử dụng khi `type` là `'object'`)"
+        },
+        "yêu cầu": {
+          "kiểu": "mảng",
+          "mặt hàng": {
+            "kiểu": "chuỗi"
+          },
+          "Mô tả": "Lược đồ JSON: danh sách các ID thuộc tính bắt buộc (được sử dụng khi `type` là `'object'`)"
+        },
+        "additionalProperties": {
+          "$ref": "#/$defs/ConfigPropertySchema",
+          "description": "Lược đồ JSON: lược đồ cho các thuộc tính bổ sung không được liệt kê trong `properties` (được sử dụng khi `type` là `'object'`)."
+        }
+      },
+      "yêu cầu": [
+        "kiểu",
+        "tiêu đề"
+      ]
+    },
+    "ConfigSchema": {
+      "kiểu": "đối tượng",
+      "description": "Một đối tượng JSON Schema mô tả các thuộc tính cấu hình có sẵn.\n\nĐây là kiểu cơ sở chung. Xem {@link SessionConfigSchema} để biết cách sử dụng dành riêng cho phiên."
+      "của cải": {
+        "kiểu": {
+          "kiểu": "chuỗi",
+          "enum": [
+            "sự vật"
+          ],
+          "Mô tả": "Lược đồ JSON: luôn là `'đối tượng'`"
+        },
+        "của cải": {
+          "kiểu": "đối tượng",
+          "additionalProperties": {
+            "$ref": "#/$defs/ConfigPropertySchema"
+          },
+          "description": "Lược đồ JSON: các mô tả thuộc tính được khóa bằng ID thuộc tính"
+        },
+        "yêu cầu": {
+          "kiểu": "mảng",
+          "mặt hàng": {
+            "kiểu": "chuỗi"
+          },
+          "Mô tả": "Lược đồ JSON: danh sách các ID thuộc tính bắt buộc"
+        }
+      },
+      "yêu cầu": [
+        "kiểu",
+        "của cải"
+      ]
+    },
+    "Vị trí văn bản": {
+      "kiểu": "đối tượng",
+      "Mô tả": "Vị trí bắt đầu từ chỉ số 0 trong một tài liệu văn bản."
+      "của cải": {
+        "đường kẻ": {
+          "loại": "số",
+          "Mô tả": "Số dòng chỉ từ 0."
+        },
+        "tính cách": {
+          "loại": "số",
+          "Mô tả": "Vị trí bắt đầu của ký tự từ 0 trong dòng."
+        }
+      },
+      "yêu cầu": [
+        "đường kẻ",
+        "tính cách"
+      ]
+    },
+    "TextRange": {
+      "kiểu": "đối tượng",
+      "Mô tả": "Một phạm vi trong tài liệu văn bản."
+      "của cải": {
+        "bắt đầu": {
+          "$ref": "#/$defs/TextPosition",
+          "Mô tả": "Vị trí bắt đầu của phạm vi."
+        },
+        "kết thúc": {
+          "$ref": "#/$defs/TextPosition",
+          "Mô tả": "Vị trí cuối của phạm vi."
+        }
+      },
+      "yêu cầu": [
+        "bắt đầu",
+        "kết thúc"
+      ]
+    },
+    "TextSelection": {
+      "kiểu": "đối tượng",
+      "Mô tả": "Một vùng chọn trong tài nguyên văn bản.\n\nĐiều này chỉ có ý nghĩa đối với tài nguyên văn bản. Tài nguyên nhị phân vẫn có thể\nsử dụng tài nguyên hoặc tệp đính kèm tài nguyên nhúng, nhưng chúng không nên sử dụng\ntrường chọn văn bản này."
+      "của cải": {
+        "phạm vi": {
+          "$ref": "#/$defs/TextRange",
+          "Mô tả": "Phạm vi được bao phủ bởi lựa chọn."
+        }
+      },
+      "yêu cầu": [
+        "phạm vi"
+      ]
+    },
+    "ContentRef": {
+      "kiểu": "đối tượng",
+      "description": "Tham chiếu đến nội dung lớn được lưu trữ bên ngoài cây trạng thái."
+      "của cải": {
+        "uri": {
+          "$ref": "#/$defs/URI",
+          "mô tả": "URI nội dung"
+        },
+        "sizeHint": {
+          "loại": "số",
+          "Mô tả": "Kích thước ước tính tính bằng byte"
+        },
+        "contentType": {
+          "kiểu": "chuỗi",
+          "description": "Loại MIME nội dung"
+        },
+        "nonce": {
+          "kiểu": "chuỗi",
+          "Mô tả": "Nonce nội dung"
+        }
+      },
+      "yêu cầu": [
+        "uri"
+      ]
+    },
+    "FileEdit": {
+      "kiểu": "đối tượng",
+      "Mô tả": "Mô tả sự thay đổi của tệp với trạng thái trước/sau và siêu dữ liệu khác biệt.\n\nHỗ trợ tạo (chỉ `sau`), xóa (chỉ `trước`), đổi tên/di chuyển\n(`uri` khác nhau ở trạng thái `trước` và `sau`), và chỉnh sửa (`uri` giống nhau, nội dung khác nhau)."
+      "của cải": {
+        "trước": {
+          "kiểu": "đối tượng",
+          "của cải": {
+            "uri": {
+              "$ref": "#/$defs/URI"
+            },
+            "nội dung": {
+              "$ref": "#/$defs/ContentRef"
+            }
+          },
+          "yêu cầu": [
+            "uri",
+            "nội dung"
+          ],
+          "description": "Trạng thái của tập tin trước khi chỉnh sửa. Không có trong trường hợp tạo tập tin mới hoặc chỉnh sửa tập tin trực tiếp."
+        },
+        "sau đó": {
+          "kiểu": "đối tượng",
+          "của cải": {
+            "uri": {
+              "$ref": "#/$defs/URI"
+            },
+            "nội dung": {
+              "$ref": "#/$defs/ContentRef"
+            }
+          },
+          "yêu cầu": [
+            "uri",
+            "nội dung"
+          ],
+          "description": "Trạng thái của tập tin sau khi chỉnh sửa. Không có trong trường hợp xóa tập tin."
+        },
+        "khác biệt": {
+          "kiểu": "đối tượng",
+          "của cải": {
+            "đã thêm": {
+              "loại": "số"
+            },
+            "LOẠI BỎ": {
+              "loại": "số"
+            }
+          },
+          "description": "Siêu dữ liệu hiển thị khác biệt tùy chọn"
+        }
+      }
+    },
+    "Thông tin sử dụng": {
+      "kiểu": "đối tượng",
+      "của cải": {
+        "inputTokens": {
+          "loại": "số",
+          "Mô tả": "Số token đầu vào đã được tiêu thụ"
+        },
+        "outputTokens": {
+          "loại": "số",
+          "Mô tả": "Các mã thông báo đầu ra được tạo ra"
+        },
+        "người mẫu": {
+          "kiểu": "chuỗi",
+          "Mô tả": "Mẫu được sử dụng"
+        },
+        "cacheReadTokens": {
+          "loại": "số",
+          "Mô tả": "Các mã thông báo được đọc từ bộ nhớ đệm"
+        },
+        "_meta": {
+          "kiểu": "đối tượng",
+          "additionalProperties": {},
+          "Mô tả": "Siêu dữ liệu bổ sung dành riêng cho nhà cung cấp cho báo cáo sử dụng này.\nKhách hàng CÓ THỂ tìm kiếm các khóa tùy chọn quen thuộc tại đây để cung cấp giao diện người dùng nâng cao."
+        }
+      }
+    },
+    "Thông tin lỗi": {
+      "kiểu": "đối tượng",
+      "của cải": {
+        "errorType": {
+          "kiểu": "chuỗi",
+          "Mô tả": "Mã định danh loại lỗi"
+        },
+        "tin nhắn": {
+          "kiểu": "chuỗi",
+          "Mô tả": "Thông báo lỗi dễ hiểu đối với người dùng"
+        },
+        "stack": {
+          "kiểu": "chuỗi",
+          "Mô tả": "Dấu vết ngăn xếp"
+        },
+        "_meta": {
+          "kiểu": "đối tượng",
+          "additionalProperties": {},
+          "Mô tả": "Siêu dữ liệu bổ sung dành riêng cho nhà cung cấp đối với lỗi này.\nKhách hàng CÓ THỂ tìm kiếm các khóa tùy chọn nổi tiếng ở đây để cung cấp giao diện người dùng nâng cao\n(ví dụ: lỗi tìm nạp trò chuyện có cấu trúc để nhắn tin phong phú hơn, được bản địa hóa)."
+        }
+      },
+      "yêu cầu": [
+        "errorType",
+        "tin nhắn"
+      ]
+    },
+    "Ảnh chụp nhanh": {
+      "kiểu": "đối tượng",
+      "description": "Một ảnh chụp nhanh tại một thời điểm nhất định về trạng thái của tài nguyên đã đăng ký, được trả về bởi các phương thức `initialize`, `reconnect` và `subscribe`."
+      "của cải": {
+        "tài nguyên": {
+          "$ref": "#/$defs/URI",
+          "description": "URI của kênh đã đăng ký (ví dụ: `ahp-root://`, `ahp-session:/<uuid>`, hoặc `ahp-chat:/<uuid>`)"
+        },
+        "tình trạng": {
+          "một trong số": [
+            {
+              "$ref": "#/$defs/RootState"
+            },
+            {
+              "$ref": "#/$defs/SessionState"
+            },
+            {
+              "$ref": "#/$defs/TerminalState"
+            },
+            {
+              "$ref": "#/$defs/ChangesetState"
+            },
+            {
+              "$ref": "#/$defs/ResourceWatchState"
+            },
+            {
+              "$ref": "#/$defs/AnnotationsState"
+            },
+            {
+              "$ref": "#/$defs/ChatState"
+            },
+            {
+              "$ref": "#/$defs/AutomationCatalogState"
+            },
+            {
+              "$ref": "#/$defs/AutomationRunState"
+            }
+          ],
+          "description": "Trạng thái hiện tại của tài nguyên"
+        },
+        "fromSeq": {
+          "loại": "số",
+          "description": "Đây là `serverSeq` tại thời điểm chụp ảnh này. Các thao tác tiếp theo sẽ có `serverSeq > fromSeq`."
+        }
+      },
+      "yêu cầu": [
+        "nguồn lực",
+        "tình trạng",
+        "fromSeq"
+      ]
+    },
+    "Trạng thái gốc": {
+      "kiểu": "đối tượng",
+      "description": "Trạng thái toàn cục được chia sẻ với mọi máy khách đăng ký `ahp-root://`.",
+      "của cải": {
+        "đại lý": {
+          "kiểu": "mảng",
+          "mặt hàng": {
+            "$ref": "#/$defs/AgentInfo"
+          },
+          "description": "Các hệ thống phụ trợ tác nhân khả dụng và các mô hình của chúng"
+        },
+        "activeSessions": {
+          "loại": "số",
+          "description": "Số lượng phiên hoạt động (chưa bị hủy) trên máy chủ"
+        },
+        "thiết bị đầu cuối": {
+          "kiểu": "mảng",
+          "mặt hàng": {
+            "$ref": "#/$defs/TerminalInfo"
+          },
+          "Mô tả": "Các thiết bị đầu cuối đã biết trên máy chủ. Đăng ký theo dõi URI của từng thiết bị đầu cuối để xem trạng thái đầy đủ."
+        },
+        "cấu hình": {
+          "$ref": "#/$defs/RootConfigState",
+          "Mô tả": "Sơ đồ cấu hình máy chủ tác nhân và các giá trị hiện tại"
+        },
+        "_meta": {
+          "kiểu": "đối tượng",
+          "additionalProperties": {},
+          "Mô tả": "Siêu dữ liệu bổ sung do quá trình triển khai định nghĩa về chính máy chủ tác nhân.\n\nCác máy khách CÓ THỂ tìm kiếm các khóa quen thuộc ở đây để cung cấp giao diện người dùng nâng cao."
+        }
+      },
+      "yêu cầu": [
+        "đặc vụ"
+      ]
+    },
+    "Thông tin đại lý": {
+      "kiểu": "đối tượng",
+      "của cải": {
+        "nhà cung cấp": {
+          "kiểu": "chuỗi",
+          "description": "Mã định danh nhà cung cấp đại lý (ví dụ: `'copilot'`)"
+        },
+        "displayName": {
+          "kiểu": "chuỗi",
+          "description": "Tên dễ đọc đối với con người"
+        },
+        "Sự miêu tả": {
+          "kiểu": "chuỗi",
+          "description": "Chuỗi mô tả"
+        },
+        "mô hình": {
+          "kiểu": "mảng",
+          "mặt hàng": {
+            "$ref": "#/$defs/SessionModelInfo"
+          },
+          "Mô tả": "Các mẫu có sẵn cho đại lý này"
+        },
+        "Tài nguyên được bảo vệ": {
+          "kiểu": "mảng",
+          "mặt hàng": {
+            "$ref": "#/$defs/ProtectedResourceMetadata"
+          },
+          "Mô tả": "Các tài nguyên được bảo vệ mà tác nhân này yêu cầu xác thực.\n\nMỗi mục mô tả một tài nguyên được bảo vệ bằng OAuth 2.0 sử dụng\nngữ nghĩa [RFC 9728](https://datatracker.ietf.org/doc/html/rfc9728).\nCác máy khách nên lấy mã thông báo từ các `authorization_servers` đã khai báo\nvà đẩy chúng thông qua lệnh `authenticate` trước khi tạo phiên\nvới tác nhân này."
+        },
+        "tùy chỉnh": {
+          "kiểu": "mảng",
+          "mặt hàng": {
+            "$ref": "#/$defs/Customization"
+          },
+          "description": "Các tùy chỉnh liên quan đến tác nhân này.\n\nHoặc là các tùy chỉnh vùng chứa —\ncác mục {@link PluginCustomization | `PluginCustomization`} mà tác nhân đóng gói, cộng với các mục {@link DirectoryCustomization | `DirectoryCustomization`} mà nó theo dõi trong bất kỳ không gian làm việc nào được sử dụng — hoặc các mục cấp cao nhất\n{@link McpServerCustomization | `McpServerCustomization`} mà máy chủ của tác nhân khai báo trực tiếp. Khi một phiên được tạo với\ntác nhân này, các mục này sẽ được bổ sung (ví dụ: URI thư mục được\nphân giải dựa trên không gian làm việc, các phần tử con được phân tích cú pháp) và được truyền vào danh sách `customizations` của phiên."
+        },
+        "khả năng": {
+          "$ref": "#/$defs/AgentCapabilities",
+          "description": "Các khả năng tĩnh mà tác nhân tự quảng cáo. Khách hàng sử dụng các khả năng này để kiểm soát các tính năng (đa trò chuyện, phân nhánh) thay vì bật ID nhà cung cấp."
+        }
+      },
+      "yêu cầu": [
+        "nhà cung cấp",
+        "displayName",
+        "Sự miêu tả",
+        "mô hình"
+      ]
+    },
+    "Khả năng của tác nhân": {
+      "kiểu": "đối tượng",
+      "Mô tả": "Các khả năng tĩnh mà {@link AgentInfo} quảng cáo. Được mô phỏng theo MCP\ncapabilities: mỗi trường là tùy chọn và sự hiện diện của nó (một đối tượng rỗng `{}`)\nbáo hiệu sự hỗ trợ, trong khi sự vắng mặ
