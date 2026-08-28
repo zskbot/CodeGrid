@@ -1,1 +1,1 @@
- 
+ python -m sphinx -T -j auto -b html -d _build/doctrees -D language=en . $READTHEDOCS_OUTPUT/html
