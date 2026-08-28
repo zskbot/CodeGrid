@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="en-US">
+  <id>tag:github.com,2008:/organizations/bbot2z/dotcom-03</id>
+  <link type="text/html" rel="alternate" href="https://github.com/organizations/bbot2z/dotcom-03"/>
+  <link type="application/atom+xml" rel="self" href="https://github.com/organizations/bbot2z/dotcom-03.private.atom?token=CDJ2PDSGJC4F6PZVGNANZXWIT3QX6"/>
+  <title>Private Feed for the bbot2z Organization</title>
+  <updated>2026-08-22T07:13:26-07:00</updated>
+  <entry>
+    <id>tag:github.com,2008:pr_merged/13690741552</id>
+    <published>2026-08-22 07:13:26 -0700</published>
+    <updated>2026-08-22 07:13:26 -0700</updated>
+    <link type="text/html" rel="alternate" href="https://github.com/bbot2z/bbot2z/pull/39"/>
+    <title type="html">dependabot[bot] contributed to bbot2z/bbot2z</title>
+    <author>
+      <name>dependabot[bot]</name>
+      <uri>https://github.com/dependabot[bot]</uri>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/29110?s=30&amp;v=4"/>
+    <content type="html">&lt;div class=&quot;git-merge js-feed-item-view&quot;&gt;&lt;div class=&quot;body&quot;&gt;
+&lt;!-- pull_request --&gt;
+&lt;div class=&quot;d-flex flex-items-baseline tmp-py-4&quot;&gt;
+  &lt;div class=&quot;d-flex flex-column width-full&quot;&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;d-flex flex-items-baseline&quot;&gt;
+        &lt;div class=&quot;color-fg-muted&quot;&gt;
+          &lt;span class=&quot;mr-2&quot;&gt;&lt;a class=&quot;d-inline-block&quot; href=&quot;/apps/dependabot&quot; rel=&quot;noreferrer&quot;&gt;&lt;img class=&quot;avatar&quot; src=&quot;https://avatars.githubusercontent.com/in/29110?s=64&amp;amp;v=4&quot; width=&quot;32&quot; height=&quot;32&quot; alt=&quot;@dependabot&quot;&gt;&lt;/a&gt;&lt;/span&gt;
+          &lt;a class=&quot;Link--primary no-underline wb-break-all&quot; href=&quot;/apps/dependabot&quot; rel=&quot;noreferrer&quot;&gt;dependabot[bot]&lt;/a&gt;
+          &lt;span class=&quot;Label Label--secondary&quot;&gt;Bot&lt;/span&gt;
+          merged
+          &lt;a class=&quot;Link--primary no-underline wb-break-all&quot; aria-label=&quot;bbot2z/bbot2z#39&quot; href=&quot;https://github.com/bbot2z/bbot2z/pull/39&quot; rel=&quot;noreferrer&quot;&gt;bbot2z/bbot2z#39&lt;/a&gt;
+          &lt;span&gt;
+            · &lt;relative-time tense=&quot;past&quot; datetime=&quot;2026-08-22T07:13:26-07:00&quot; data-view-component=&quot;true&quot;&gt;August 22, 2026 07:13&lt;/relative-time&gt;
+          &lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;Box tmp-p-3 my-2 color-shadow-medium color-bg-overlay&quot;&gt;
+      &lt;svg data-component=&quot;Octicon&quot; height=&quot;16&quot; aria-label=&quot;Pull request&quot; class=&quot;octicon octicon-git-pull-request merge d-inline-block mt-1 float-left&quot; viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; role=&quot;img&quot;&gt;&lt;path d=&quot;M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354ZM3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+
+      &lt;div class=&quot;tmp-ml-4&quot;&gt;
+        &lt;div&gt;
+          &lt;span class=&quot;f4 lh-condensed text-bold color-fg-default&quot;&gt;&lt;a class=&quot;color-fg-default text-bold&quot; aria-label=&quot;Bump the npm_and_yarn group across 1 directory with 2 updates&quot; href=&quot;https://github.com/bbot2z/bbot2z/pull/39&quot; rel=&quot;noreferrer&quot;&gt;Bump the npm_and_yarn group across 1 directory with 2 updates&lt;/a&gt;&lt;/span&gt;
+          &lt;span class=&quot;f4 color-fg-muted ml-1&quot;&gt;#39&lt;/span&gt;
+            &lt;div class=&quot;lh-condensed mb-2 mt-1&quot;&gt;
+              &lt;p dir=&quot;auto&quot;&gt;Bumps the npm_and_yarn group with 2 updates in the / directory: &lt;a href=&quot;https://github.com/expressjs/body-parser&quot; rel=&quot;noreferrer&quot;&gt;body-parser&lt;/a&gt; and &lt;a href=&quot;https://github.com/postcss/postcss&quot; rel=&quot;noreferrer&quot;&gt;postcss&lt;/a&gt;.&lt;/p&gt;
+&lt;p dir=&quot;auto&quot;&gt;Updates &lt;code class=&quot;notranslate&quot;&gt;body-parser&lt;/code&gt; from 1.20.5 to 1.20.6&lt;/p&gt;
+&lt;details&gt;
+&lt;summary&gt;Release notes&lt;/summary&gt;
+&lt;p dir=&quot;auto&quot;&gt;&lt;em&gt;S…&lt;/em&gt;&lt;/p&gt;&lt;/details&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+          &lt;div class=&quot;diffstat d-inline-block mt-1&quot;&gt;
+            &lt;span class=&quot;color-fg-success&quot;&gt;+70&lt;/span&gt;
+            &lt;span class=&quot;color-fg-danger&quot;&gt;-10&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;div class=&quot;d-inline-block f6 color-fg-muted tmp-ml-3&quot;&gt;
+            1 comment
+          &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;</content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:pr_merged/13637016352</id>
+    <published>2026-08-21 02:45:12 -0700</published>
+    <updated>2026-08-21 02:45:12 -0700</updated>
+    <link type="text/html" rel="alternate" href="https://github.com/bbot2z/claude-code-action/pull/1"/>
+    <title type="html">dependabot[bot] contributed to bbot2z/claude-code-action</title>
+    <author>
+      <name>dependabot[bot]</name>
+      <uri>https://github.com/dependabot[bot]</uri>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/29110?s=30&amp;v=4"/>
+    <content type="html">&lt;div class=&quot;git-merge js-feed-item-view&quot;&gt;&lt;div class=&quot;body&quot;&gt;
+&lt;!-- pull_request --&gt;
+&lt;div class=&quot;d-flex flex-items-baseline tmp-py-4&quot;&gt;
+  &lt;div class=&quot;d-flex flex-column width-full&quot;&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;d-flex flex-items-baseline&quot;&gt;
+        &lt;div class=&quot;color-fg-muted&quot;&gt;
+          &lt;span class=&quot;mr-2&quot;&gt;&lt;a class=&quot;d-inline-block&quot; href=&quot;/apps/dependabot&quot; rel=&quot;noreferrer&quot;&gt;&lt;img class=&quot;avatar&quot; src=&quot;https://avatars.githubusercontent.com/in/29110?s=64&amp;amp;v=4&quot; width=&quot;32&quot; height=&quot;32&quot; alt=&quot;@dependabot&quot;&gt;&lt;/a&gt;&lt;/span&gt;
+          &lt;a class=&quot;Link--primary no-underline wb-break-all&quot; href=&quot;/apps/dependabot&quot; rel=&quot;noreferrer&quot;&gt;dependabot[bot]&lt;/a&gt;
+          &lt;span class=&quot;Label Label--secondary&quot;&gt;Bot&lt;/span&gt;
+          merged
+          &lt;a class=&quot;Link--primary no-underline wb-break-all&quot; aria-label=&quot;bbot2z/claude-code-action#1&quot; href=&quot;https://github.com/bbot2z/claude-code-action/pull/1&quot; rel=&quot;noreferrer&quot;&gt;bbot2z/claude-code-action#1&lt;/a&gt;
+          &lt;span&gt;
+            · &lt;relative-time tense=&quot;past&quot; datetime=&quot;2026-08-21T02:45:12-07:00&quot; data-view-component=&quot;true&quot;&gt;August 21, 2026 02:45&lt;/relative-time&gt;
+          &lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;Box tmp-p-3 my-2 color-shadow-medium color-bg-overlay&quot;&gt;
+      &lt;svg data-component=&quot;Octicon&quot; height=&quot;16&quot; aria-label=&quot;Pull request&quot; class=&quot;octicon octicon-git-pull-request merge d-inline-block mt-1 float-left&quot; viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; role=&quot;img&quot;&gt;&lt;path d=&quot;M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354ZM3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+
+      &lt;div class=&quot;tmp-ml-4&quot;&gt;
+        &lt;div&gt;
+          &lt;span class=&quot;f4 lh-condensed text-bold color-fg-default&quot;&gt;&lt;a class=&quot;color-fg-default text-bold&quot; aria-label=&quot;chore(deps): bump shell-quote from 1.8.3 to 1.8.4 in /base-action in the npm_and_yarn group across 1 directory&quot; href=&quot;https://github.com/bbot2z/claude-code-action/pull/1&quot; rel=&quot;noreferrer&quot;&gt;chore(deps): bump shell-quote from 1.8.3 to 1.8.4 in /base-action in the npm_and_yarn group across 1 directory&lt;/a&gt;&lt;/span&gt;
+          &lt;span class=&quot;f4 color-fg-muted ml-1&quot;&gt;#1&lt;/span&gt;
+            &lt;div class=&quot;lh-condensed mb-2 mt-1&quot;&gt;
+              &lt;p dir=&quot;auto&quot;&gt;Bumps the npm_and_yarn group with 1 update in the /base-action directory: &lt;a href=&quot;https://github.com/ljharb/shell-quote&quot; rel=&quot;noreferrer&quot;&gt;shell-quote&lt;/a&gt;.&lt;/p&gt;
+&lt;p dir=&quot;auto&quot;&gt;Updates &lt;code class=&quot;notranslate&quot;&gt;shell-quote&lt;/code&gt; from 1.8.3 to 1.8.4&lt;/p&gt;
+&lt;details&gt;
+&lt;summary&gt;Changelog&lt;/summary&gt;
+&lt;p dir=&quot;auto&quot;&gt;&lt;em&gt;Sourced f…&lt;/em&gt;&lt;/p&gt;&lt;/details&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+          &lt;div class=&quot;diffstat d-inline-block mt-1&quot;&gt;
+            &lt;span class=&quot;color-fg-success&quot;&gt;+1,515&lt;/span&gt;
+            &lt;span class=&quot;color-fg-danger&quot;&gt;-45&lt;/span&gt;
+          &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;</content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:push/18347597903</id>
+    <published>2026-08-21 05:57:45 +0700</published>
+    <updated>2026-08-21 05:57:45 +0700</updated>
+    <link type="text/html" rel="alternate" href="https://github.com/bbot2z/Ai/compare/0000000000...dce4c153e3"/>
+    <title type="html">dependabot created a branch</title>
+    <author>
+      <name>dependabot[bot]</name>
+      <uri>https://github.com/dependabot[bot]</uri>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/29110?s=30&amp;v=4"/>
+    <content type="html">&lt;div class=&quot;git-branch js-feed-item-view&quot;&gt;&lt;div class=&quot;body&quot;&gt;
+&lt;!-- create --&gt;
+&lt;div class=&quot;d-flex flex-items-baseline tmp-py-4&quot;&gt;
+  &lt;div class=&quot;d-flex flex-column width-full&quot;&gt;
+        &lt;div class=&quot;d-flex flex-items-baseline&quot;&gt;
+          &lt;div class=&quot;color-fg-muted&quot;&gt;
+                &lt;span class=&quot;mr-2&quot;&gt;&lt;a class=&quot;d-inline-block&quot; href=&quot;/apps/dependabot&quot; rel=&quot;noreferrer&quot;&gt;&lt;img class=&quot;avatar&quot; src=&quot;https://avatars.githubusercontent.com/in/29110?s=64&amp;amp;v=4&quot; width=&quot;32&quot; height=&quot;32&quot; alt=&quot;@dependabot&quot;&gt;&lt;/a&gt;&lt;/span&gt;
+              &lt;a class=&quot;Link--primary no-underline wb-break-all&quot; href=&quot;/apps/dependabot&quot; rel=&quot;noreferrer&quot;&gt;dependabot[bot]&lt;/a&gt;
+              &lt;span class=&quot;Label Label--secondary&quot;&gt;Bot&lt;/span&gt;
+              created a
+              branch
+              in
+              &lt;a class=&quot;Link--primary no-underline wb-break-all&quot; href=&quot;/bbot2z/Ai&quot; rel=&quot;noreferrer&quot;&gt;bbot2z/Ai&lt;/a&gt;
+
+            &lt;span&gt;
+              · &lt;relative-time tense=&quot;past&quot; datetime=&quot;2026-08-21T05:57:45+07:00&quot; data-view-component=&quot;true&quot;&gt;August 21, 2026 05:57&lt;/relative-time&gt;
+            &lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+    &lt;div class=&quot;Box tmp-p-3 mt-2 color-shadow-medium color-bg-overlay&quot;&gt;
+      &lt;div&gt;
+        &lt;div class=&quot;f4 lh-condensed text-bold color-fg-default&quot;&gt;
+          &lt;div class=&quot;d-inline-block&quot;&gt;
+            &lt;div class=&quot;d-flex&quot;&gt;
+              &lt;div class=&quot;mr-2&quot;&gt;
+                &lt;a class=&quot;d-flex&quot; data-hovercard-type=&quot;organization&quot; data-hovercard-url=&quot;/orgs/bbot2z/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;/bbot2z&quot; rel=&quot;noreferrer&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/u/296003590?s=40&amp;amp;v=4&quot; alt=&quot;@bbot2z&quot; size=&quot;20&quot; height=&quot;20&quot; width=&quot;20&quot; data-view-component=&quot;true&quot; class=&quot;avatar avatar-small&quot;&gt;&lt;/a&gt;
+              &lt;/div&gt;
+                  &lt;div class=&quot;d-inline-block&quot;&gt;
+                    &lt;a class=&quot;css-truncate css-truncate-target branch-name v-align-middle&quot; title=&quot;refs/heads/dependabot/npm_and_yarn/npm_and_yarn-c4b2b6c73f&quot; href=&quot;https://github.com/bbot2z/Ai/tree/refs/heads/dependabot/npm_and_yarn/npm_and_yarn-c4b2b6c73f&quot; rel=&quot;noreferrer&quot;&gt;refs/heads/dependabot/npm_and_yarn/npm_and_yarn-c4b2b6c73f&lt;/a&gt; in &lt;a class=&quot;Link--primary text-bold no-underline wb-break-all d-inline-block&quot; href=&quot;/bbot2z/Ai&quot; rel=&quot;noreferrer&quot;&gt;bbot2z/Ai&lt;/a&gt;
+                  &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+
+          &lt;p class=&quot;f6 color-fg-muted mt-2 mb-0&quot;&gt;
+            &lt;span&gt;Updated Aug 21&lt;/span&gt;
+          &lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;</content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:pr_created/13614056079</id>
+    <published>2026-08-20 15:57:45 -0700</published>
+    <updated>2026-08-20 15:57:45 -0700</updated>
+    <link type="text/html" rel="alternate" href="https://github.com/bbot2z/Ai/pull/2"/>
+    <title type="html">dependabot opened a pull request in Ai</title>
+    <author>
+      <name>dependabot[bot]</name>
+      <uri>https://github.com/dependabot[bot]</uri>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/29110?s=30&amp;v=4"/>
+    <content type="html">&lt;div class=&quot;git-pull-request js-feed-item-view&quot;&gt;&lt;div class=&quot;body&quot;&gt;
+&lt;!-- pull_request --&gt;
+&lt;div class=&quot;d-flex flex-items-baseline tmp-py-4&quot;&gt;
+  &lt;div class=&quot;d-flex flex-column width-full&quot;&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;d-flex flex-items-baseline&quot;&gt;
+        &lt;div class=&quot;color-fg-muted&quot;&gt;
+          &lt;span class=&quot;mr-2&quot;&gt;&lt;a class=&quot;d-inline-block&quot; href=&quot;/apps/dependabot&quot; rel=&quot;noreferrer&quot;&gt;&lt;img class=&quot;avatar&quot; src=&quot;https://avatars.githubusercontent.com/in/29110?s=64&amp;amp;v=4&quot; width=&quot;32&quot; height=&quot;32&quot; alt=&quot;@dependabot&quot;&gt;&lt;/a&gt;&lt;/span&gt;
+          &lt;a class=&quot;Link--primary no-underline wb-break-all&quot; href=&quot;/apps/dependabot&quot; rel=&quot;noreferrer&quot;&gt;dependabot[bot]&lt;/a&gt;
+          &lt;span class=&quot;Label Label--secondary&quot;&gt;Bot&lt;/span&gt;
+          opened
+          &lt;a class=&quot;Link--primary no-underline wb-break-all&quot; aria-label=&quot;bbot2z/Ai#2&quot; href=&quot;https://github.com/bbot2z/Ai/pull/2&quot; rel=&quot;noreferrer&quot;&gt;bbot2z/Ai#2&lt;/a&gt;
+          &lt;span&gt;
+            · &lt;relative-time tense=&quot;past&quot; datetime=&quot;2026-08-20T15:57:45-07:00&quot; data-view-component=&quot;true&quot;&gt;August 20, 2026 15:57&lt;/relative-time&gt;
+          &lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;Box tmp-p-3 my-2 color-shadow-medium color-bg-overlay&quot;&gt;
+      &lt;svg data-component=&quot;Octicon&quot; height=&quot;16&quot; aria-label=&quot;Pull request&quot; class=&quot;octicon octicon-git-pull-request pull-request d-inline-block mt-1 float-left&quot; viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; role=&quot;img&quot;&gt;&lt;path d=&quot;M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354ZM3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+
+      &lt;div class=&quot;tmp-ml-4&quot;&gt;
+        &lt;div&gt;
+          &lt;span class=&quot;f4 lh-condensed text-bold color-fg-default&quot;&gt;&lt;a class=&quot;color-fg-default text-bold&quot; aria-label=&quot;build(deps): bump the npm_and_yarn group across 4 directories with 11 updates&quot; href=&quot;https://github.com/bbot2z/Ai/pull/2&quot; rel=&quot;noreferrer&quot;&gt;build(deps): bump the npm_and_yarn group across 4 directories with 11 updates&lt;/a&gt;&lt;/span&gt;
+          &lt;span class=&quot;f4 color-fg-muted ml-1&quot;&gt;#2&lt;/span&gt;
+            &lt;div class=&quot;lh-condensed mb-2 mt-1&quot;&gt;
+              &lt;p dir=&quot;auto&quot;&gt;Bumps the npm_and_yarn group with 10 updates in the / directory:&lt;/p&gt;
+&lt;markdown-accessiblity-table&gt;&lt;table role=&quot;table&quot;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Package&lt;/th&gt;
+&lt;th&gt;From&lt;/th&gt;
+&lt;th&gt;To&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;https://github.com/vercel/next.js&quot; rel=&quot;noreferrer&quot;&gt;next&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code class=&quot;notranslate&quot;&gt;15.5.18&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code class=&quot;notranslate&quot;&gt;15.5.21&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;https://github.com/honojs/node-server&quot; rel=&quot;noreferrer&quot;&gt;@hono/node-server&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code class=&quot;notranslate&quot;&gt;1.19.13&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code class=&quot;notranslate&quot;&gt;1.19.15&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;https://github.com/honojs/hono&quot; rel=&quot;noreferrer&quot;&gt;h…&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/markdown-accessiblity-table&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+          &lt;div class=&quot;diffstat d-inline-block mt-1&quot;&gt;
+            &lt;span class=&quot;color-fg-success&quot;&gt;+3,113&lt;/span&gt;
+            &lt;span class=&quot;color-fg-danger&quot;&gt;-2,551&lt;/span&gt;
+          &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;</content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:push/17511497172</id>
+    <published>2026-08-13 03:10:51 +0700</published>
+    <updated>2026-08-13 03:10:51 +0700</updated>
+    <link type="text/html" rel="alternate" href="https://github.com/bbot2z/vscode/compare/0000000000...836bfffbd8"/>
+    <title type="html">dependabot created a branch</title>
+    <author>
+      <name>dependabot[bot]</name>
+      <uri>https://github.com/dependabot[bot]</uri>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/29110?s=30&amp;v=4"/>
+    <content type="html">&lt;div class=&quot;git-branch js-feed-item-view&quot;&gt;&lt;div class=&quot;body&quot;&gt;
+&lt;!-- create --&gt;
+&lt;div class=&quot;d-flex flex-items-baseline tmp-py-4&quot;&gt;
+  &lt;div class=&quot;d-flex flex-column width-full&quot;&gt;
+        &lt;div class=&quot;d-flex flex-items-baseline&quot;&gt;
+          &lt;div class=&quot;color-fg-mu
