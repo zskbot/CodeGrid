@@ -8,3 +8,18 @@ build:
 python:
   install:
     - requirements: docs/requirements.txt # Nếu bạn có tệp khai báo thư viện
+version: 2
+
+# Khai báo cấu hình xây dựng hệ thống của bạn
+build:
+  os: ubuntu-22.04
+  tools:
+    python: "3.11" # Sử dụng phiên bản Python phù hợp với dự án của bạn
+
+# PHẦN THIẾU CẦN THÊM VÀO:
+sphinx:
+  configuration: docs/conf.py  # Thay đổi đường dẫn này nếu tệp conf.py của bạn nằm ở chỗ khác (ví dụ: docs/source/conf.py)
+
+python:
+  install:
+    - requirements: docs/requirements.txt
